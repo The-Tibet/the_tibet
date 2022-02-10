@@ -48,9 +48,19 @@ request.setCharacterEncoding("UTF-8");
 						<label>내용</label>
 						<textarea id="summernote" name="notice_content"></textarea>
 					</div>
-					<div class="qna-ask-form-img">
-						<label>이미지 첨부</label> <input class="qna-ask-form-img-btn"
-							type="file" name="notice_img">
+				<div class="qna-ask-form-img">
+						<div>
+						<label>이미지 첨부</label><input class="qna-ask-form-img-btn"
+							type="file" name="notcie_img1" value='<c:out value="${notcie.notcie_img1}"/>'>
+						</div>
+						<div>	
+							<label>이미지 첨부</label><input class="qna-ask-form-img-btn"
+							type="file" name="notcie_img2" value='<c:out value="${notcie.notcie_img2}"/>'>
+						</div>
+						<div>
+							<label>이미지 첨부</label><input class="qna-ask-form-img-btn"
+							type="file" name="notcie_img3" value='<c:out value="${notcie.notcie_img3}"/>'>
+						</div>	
 					</div>
 			<div class="box-btn">
 					<div class="box-btn-text">

@@ -14,6 +14,7 @@ import com.myspring.tibet.board.vo.QnaCommentVO;
 import com.myspring.tibet.board.vo.QnaVO;
 import com.myspring.tibet.board.vo.ReviewVO;
 import com.myspring.tibet.utils.Criteria;
+import com.myspring.tibet.utils.SearchCriteria;
 
 @Service("boardService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -21,29 +22,29 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	BoardDAO boardDAO;
 	
+	// 공지사항 페이징
+	@Override
+    public  List<NoticeVO> selectAllNoticesList(SearchCriteria scri) throws Exception {
+	    return boardDAO.selectAllNoticesList(scri);
+	}
+	// 공지사항 목록
+	@Override
+	public int countNoticeList(SearchCriteria scri) throws Exception{
+	    return boardDAO.countNoticeList(scri);
+	}
+	// QNA 페이징
+	@Override
+    public  List<QnaVO> selectQnaList(SearchCriteria scri) throws Exception {
+	    return boardDAO.selectQnaList(scri);
+	}
+	// QNA 목록
+	@Override
+	public int countQnaList(SearchCriteria scri) throws Exception{
+	    return boardDAO.countQnaList(scri);
+	}
 	@Override
 	public void insertQnaWritePage(QnaVO qnaVO) throws Exception{
 		boardDAO.insertQnaWritePage(qnaVO);
-	}
-	
-	@Override
-	public List<Map<String, Object>> selectQnaList(Criteria cri) {
-	    return boardDAO.selectQnaList(cri);
-	}
-	
-	@Override
-	public int countQnaListTotal() {
-	    return boardDAO.countQnaList();
-	}
-
-	@Override
-	public List<Map<String, Object>> selectNoticeList(Criteria cri) {
-	    return boardDAO.selectNoticeList(cri);
-	}
-	
-	@Override
-	public int countNoticeListTotal() {
-	    return boardDAO.countNoticeList();
 	}
 	
 	@Override
@@ -63,9 +64,6 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public int modifyQna(QnaVO qnaVO) {
-		System.out.println("서비스는?"+ qnaVO.getQna_num());
-		System.out.println("서비스는?"+ qnaVO.getUser_id());
-		System.out.println("서비스는?"+ qnaVO.getQna_pw());
 		return boardDAO.modifyQna(qnaVO);
 	}
 	

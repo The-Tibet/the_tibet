@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.tibet.admin.board.service.AdminBoardSerivce;
 import com.myspring.tibet.board.vo.NoticeVO;
-import com.myspring.tibet.utils.Criteria;
 import com.myspring.tibet.utils.PageMaker;
 import com.myspring.tibet.utils.SearchCriteria;
 
@@ -33,7 +32,8 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(AdminBoardController.class);
 	
-	// 공지사항 페이지
+	// 공지사항 페이징+검색 목록
+	@Override
 	@RequestMapping(value = "/admin-notice.do", method = RequestMethod.GET)
 	public ModelAndView openNoticeList(SearchCriteria scri, HttpServletRequest request) throws Exception {
 		logger.info("admin-notice.do");
@@ -41,7 +41,7 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		ModelAndView mav = new ModelAndView(viewName);
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminBoardSerivce.countNoticeListTotal(scri));
+		pageMaker.setTotalCount(adminBoardSerivce.adminopenNoticeList(scri));
 		List<NoticeVO> list = adminBoardSerivce.selectAllNoticesList(scri);
 		
 		mav.addObject("list", list);

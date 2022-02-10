@@ -19,5 +19,5 @@ public interface AdminBoardDAO {
 	// 공지사항 페이징
     public  List<NoticeVO> selectAllNoticesList(SearchCriteria scri) throws Exception;
 	// 공지사항 목록
-	public int countNoticeList(SearchCriteria scri) throws Exception;
+	public int adminopenNoticeList(SearchCriteria scri) throws Exception;
 }

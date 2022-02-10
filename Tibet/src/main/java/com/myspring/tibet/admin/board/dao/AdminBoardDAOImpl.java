@@ -47,8 +47,8 @@ public class AdminBoardDAOImpl  implements AdminBoardDAO {
 	
 	// 공지사항 목록
 	@Override
-	public int countNoticeList(SearchCriteria scri) throws Exception {
-	    return sqlSession.selectOne("mapper.admin.board.countNoticeList");
+	public int adminopenNoticeList(SearchCriteria scri) throws Exception {
+	    return sqlSession.selectOne("mapper.admin.board.adminopenNoticeList");
 	}
 
 
