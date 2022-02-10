@@ -50,8 +50,18 @@ request.setCharacterEncoding("UTF-8");
 						<textarea id="summernote" name="notice_content"></textarea>
 					</div>
 					<div class="qna-ask-form-img">
-						<label>이미지 첨부</label> <input class="qna-ask-form-img-btn"
-							type="file" name="notice_img">
+						<div>
+							<label>이미지 첨부</label> 
+							<input class="notice-ask-form-img-btn" type="file" name="notice_img1">
+						</div>
+						<div>
+							<label>이미지 첨부</label> 
+							<input class="notice-ask-form-img-btn" type="file" name="notice_img2">
+						</div>
+						<div>
+							<label>이미지 첨부</label> 
+							<input class="notice-ask-form-img-btn" type="file" name="notice_img3">
+						</div>
 					</div>
 			<div class="box-btn">
 					<div class="box-btn-text">

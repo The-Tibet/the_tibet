@@ -18,6 +18,7 @@ request.setCharacterEncoding("UTF-8");
 </head>
 <body>
 	<section>
+	<form role="form" method="get">
 		<div class="notice">
 			<div class="notice-front-table mgb10">
 				<div class="notice-front-fonter-qna">
@@ -63,22 +64,42 @@ request.setCharacterEncoding("UTF-8");
 					</tbody>
 				</table>
 			</div>
+			 <!-- 페이징 -->
 			<ul class="btn-group pagination">
-				<c:if test="${pageMaker.prev }">
-					<li><a href='<c:url value="/notice.do?page=${pageMaker.startPage-1 }"/>'>
-						<i class="fas fa-chevron-left"></i></a>
-					</li>
-				</c:if>
-				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
-					<li><a href='<c:url value="/notice.do?page=${pageNum }"/>'>${pageNum }</a></li>
-				</c:forEach>
-				<c:if test="${pageMaker.next && pageMaker.endPage >0 }">
-					<li><a href='<c:url value="/notice.do?page=${pageMaker.endPage+1 }"/>'>
-						<i class="fas fa-chevron-right"></i></a>
-					</li>
-				</c:if>
-			</ul>
-		</div>
+			<c:if test="${pageMaker.prev}">
+				<li><a href='<c:url value="/notice.do${pageMaker.makeSearch(pageMaker.startPage - 1)}"/>'><i class="fas fa-chevron-left"></i></a></li>
+			</c:if>
+
+			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+				<li><a href='<c:url value="/notice.do${pageMaker.makeSearch(idx)}"/>'>${idx}</a></li>
+			</c:forEach>
+
+			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+				<li><a href='<c:url value="/notice.do${pageMaker.makeSearch(pageMaker.endPage + 1)}"/>'><i class="fas fa-chevron-right"></i></a></li>
+			</c:if>
+		</ul>
+	</div>
+			 <!-- 검색기능 -->
+		  <div class="search">
+		    <select name="searchType">
+		      <option value="all"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>전체</option>
+		      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+		      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+		      <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+		      <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+		    </select>
+		    <input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
+		    <button id="searchBtn" type="button">검색</button>
+		  </div>
+	  </form>
 	</section>
-</body>
+	</body>
+<script>
+	// 페이징 클릭
+      $(function(){
+        $('#searchBtn').click(function() {
+          self.location = "admin-notice.do" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+</script>
 </html>

@@ -44,36 +44,57 @@
     <result property="product_num" column="product_num" />
 </resultMap>
 
-
+<!-- 공지사항 페이징 -->
 <select id="selectAllNoticesList" resultType="hashmap" parameterType="hashmap">
-    <![CDATA[
-     	SELECT cast(@num:=@num+1 AS signed integer) AS num,notice_num,notice_title,notice_content,user_id,cast(notice_date AS DATE) as notice_date
+     	SELECT cast(@num:=@num+1 AS signed integer) AS num,
+     	notice_num,notice_title,notice_content,user_id,cast(notice_date AS DATE)
+     	as notice_date
 		FROM (SELECT @num:=(#{pageStart}/#{perPageNum})*(${perPageNum})) AS n, notice
+		where notice_num > 0
+		<include refid="search"></include>
 		ORDER BY notice_date DESC
 		LIMIT #{pageStart}, #{perPageNum}
-    ]]>
 </select>
 
-<select id="countNoticeList" resultType="Integer">
-    <![CDATA[
-        SELECT
-            count(*)
-        FROM
-            notice
-    ]]>
+
+<!-- 공지사항 목록 -->
+<select id="countNoticeList" parameterType="com.myspring.tibet.utils.SearchCriteria" resultType="int">
+       SELECT count(notice_num)
+       FROM notice
+       where notice_num > 0
+   <include refid="search"></include>
 </select>
 
 <select id="noticeDetail" resultType="com.myspring.tibet.board.vo.NoticeVO">
 			select notice_num,notice_title, notice_content, cast(notice_date AS DATE) as notice_date, notice_img1,notice_img2,notice_img3, user_id from notice where notice_num=#{notice_num}
 </select>
-
-<select id="selectAllQnasList" resultType="hashmap" parameterType="hashmap">
-    <![CDATA[
-     	SELECT cast(@num:=@num+1 AS signed integer) AS num,q.qna_num,qna_title,qna_img1,qna_img2,qna_img3,qna_lock,qna_content,q.user_id,qna_pw,qna_date,c.qna_comment_num
+<!-- QNA 페이징 -->
+<!-- <select id="selectAllQnasList" resultType="hashmap" parameterType="hashmap">
+     	SELECT cast(@num:=@num+1 AS signed integer) AS num,
+     	qna_num,qna_title,qna_img1,qna_img2,qna_img3,qna_lock,qna_content,q.user_id,qna_pw,qna_date,c.qna_comment_num
 		FROM (SELECT @num:=(#{pageStart}/#{perPageNum})*(${perPageNum})) AS n, qna q LEFT OUTER JOIN tibetdb.qna_comment c ON q.qna_num=c.qna_num
+		where qna_num > 0
+		<include refid="search"></include>
 		ORDER BY qna_date DESC
 		LIMIT #{pageStart}, #{perPageNum}
-    ]]>
+</select> -->
+
+<!-- QNA 페이징 -->
+<select id="selectAllQnasList" resultType="hashmap" parameterType="hashmap">
+ 	SELECT cast(@num:=@num+1 AS signed integer) AS num,q.qna_num,qna_title,qna_img1,qna_img2,qna_img3,qna_lock,qna_content,q.user_id,qna_pw,qna_date,c.qna_comment_num
+		FROM (SELECT @num:=(#{pageStart}/#{perPageNum})*(${perPageNum})) AS n, qna q LEFT OUTER JOIN tibetdb.qna_comment c ON q.qna_num=c.qna_num
+		where qna_num > 0
+		<include refid="search"></include>
+		ORDER BY qna_date DESC
+		LIMIT #{pageStart}, #{perPageNum}
+		</select>
+<!-- QNA 목록 -->
+<select id="countQnaList" parameterType="com.myspring.tibet.utils.SearchCriteria" resultType="int">
+        SELECT 
+            count(qna_num)
+        FROM
+            where qna_num > 0
+        <include refid="search"></include>
 </select>
 
 <select id="selectProdQnasList" resultMap="qnaResult">
@@ -89,14 +110,6 @@
     ]]>
 </insert>
 
-<select id="countQnaList" resultType="Integer">
-    <![CDATA[
-        SELECT
-            count(*)
-        FROM
-            qna
-    ]]>	
-</select>
 
 <select id="selectProdReviewsList" resultMap="reviewResult">
     <![CDATA[
@@ -123,5 +136,16 @@
 		delete from tibetdb.qna where qna_num=#{qna_num}
 	]]>
 </delete>
+	<!-- 검색기능 동적쿼리문 -->
+		<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()"> AND notice_title LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test="searchType == 'c'.toString()"> AND notice_content LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test="searchType == 'w'.toString()"> AND user_id LIKE CONCAT('%', #{keyword}, '%')</if>
+			<if test="searchType == 'tc'.toString()">AND (notice_title like CONCAT('%', #{keyword}, '%') or notice_content like CONCAT('%', #{keyword}, '%'))</if>
+			<if test="searchType == 'all'.toString()">AND (notice_title like CONCAT('%', #{keyword}, '%') or notice_content like CONCAT('%', #{keyword}, '%') or user_id like CONCAT('%', #{keyword}, '%'))
+			</if>
+		</if>
+	</sql>
 
 </mapper>

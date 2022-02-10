@@ -108,20 +108,18 @@ request.setCharacterEncoding("UTF-8");
 				<tbody class="service-notice-content mgb20">
 					<c:forEach items="${list}" var="nList">
 						<tr>
-							<td class="text_ct"><input name="RowCheck" type="checkbox"
-								value="${nList.notice_num}" /></td>
-							<td class="text_ct">${nList.notice_num}</td>
-							<td class="text_ct"><a
-								href="${contextPath}/admin-noticeDetail${nList.notice_num}.do">${nList.notice_title}</a></td>
+							<td class="text_ct"><input name="RowCheck" type="checkbox" value="${nList.notice_num}" /></td>
+							<td class="text_ct">${nList.num}</td>
+							<td class="text_ct"><a href="${contextPath}/admin-noticeDetail${nList.notice_num}.do">${nList.notice_title}</a></td>
 							<td class="text_ct">${nList.user_id }</td>
 							<td class="text_ct">${nList.notice_date}</td>
 						</tr>
 					</c:forEach>
 			</table>
 		 <!-- 페이징 -->
-			<ul>
+		 	<ul class="btn-group pagination">
 				<c:if test="${pageMaker.prev}">
-					<li><a href='<c:url value="/admin-notice.do${pageMaker.makeSearch(pageMaker.startPage - 1)}"/>'>이전</a></li>
+					<li><a href='<c:url value="/admin-notice.do${pageMaker.makeSearch(pageMaker.startPage - 1)}"/>'><i class="fas fa-chevron-left"></i></a></li>
 				</c:if>
 
 				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
@@ -129,13 +127,14 @@ request.setCharacterEncoding("UTF-8");
 				</c:forEach>
 
 				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					<li><a href='<c:url value="/admin-notice.do${pageMaker.makeSearch(pageMaker.endPage + 1)}"/>'>다음</a></li>
+					<li><a href='<c:url value="/admin-notice.do${pageMaker.makeSearch(pageMaker.endPage + 1)}"/>'><i class="fas fa-chevron-right"></i></a></li>
 				</c:if>
 			</ul>
 		</div>
 		<!-- 검색기능 -->
-		  <div class="search">
+  <div class="search">
     <select name="searchType">
+      <option value="all"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>전체</option>
       <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
       <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
       <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>

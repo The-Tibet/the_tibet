@@ -16,58 +16,47 @@ import com.myspring.tibet.board.vo.QnaCommentVO;
 import com.myspring.tibet.board.vo.QnaVO;
 import com.myspring.tibet.board.vo.ReviewVO;
 import com.myspring.tibet.utils.Criteria;
+import com.myspring.tibet.utils.SearchCriteria;
 
 @Repository("boardDAO")
 public class BoardDAOImpl implements BoardDAO {
 	@Inject
     private SqlSession sqlSession;
-	protected Log log = LogFactory.getLog(BoardDAOImpl.class);
 
-	protected void printQueryId(String queryId) {
-		if (log.isDebugEnabled()) {
-			log.debug("\t QueryId  \t:  " + queryId);
-		}
-	}
 
-	@SuppressWarnings("rawtypes")
-    public List selectList(String queryId, Object params){
-        printQueryId(queryId);
-        return sqlSession.selectList(queryId,params);
-    }
 
 	@Override
 	public void insertQnaWritePage(QnaVO _qnaVO) throws DataAccessException{
 		sqlSession.insert("mapper.board.insertQnaWritePage", _qnaVO);
 
 	}
-	
-	@SuppressWarnings("unchecked")
+	// 공지사항 페이징
 	@Override
-	public List<Map<String, Object>> selectQnaList(Criteria cri) {
-		return (List<Map<String,Object>>)selectList("mapper.board.selectAllQnasList", cri);
+	public List<NoticeVO> selectAllNoticesList(SearchCriteria scri) throws Exception {
+		return sqlSession.selectList("mapper.board.selectAllNoticesList", scri);
+	}
+	// 공지사항 목록
+	@Override
+	public int countNoticeList(SearchCriteria scri) throws Exception {
+	    return sqlSession.selectOne("mapper.board.countNoticeList");
 	}
 	
+	// QNA 페이징
 	@Override
-	public int countQnaList(){
-	    return (Integer) sqlSession.selectOne("mapper.board.countQnaList");
+	public List<QnaVO> selectQnaList(SearchCriteria scri) throws Exception {
+		return sqlSession.selectList("mapper.board.selectQnaList", scri);
+	}
+	// QNA 목록
+	@Override
+	public int countQnaList(SearchCriteria scri) throws Exception {
+	    return sqlSession.selectOne("mapper.board.countQnaList");
 	}
 	
 	@Override
 	public void insertNoticeWritePage(NoticeVO noticeVO) throws DataAccessException{
 		sqlSession.insert("mapper.board.insertNoticeWritePage", noticeVO);
 	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Map<String, Object>> selectNoticeList(Criteria cri) {
-		return (List<Map<String,Object>>)selectList("mapper.board.selectAllNoticesList", cri);
-	}
-	
-	@Override
-	public int countNoticeList(){
-	    return (Integer) sqlSession.selectOne("mapper.board.countNoticeList");
-	}
-	
+
 	@Override
 	public NoticeVO noticeDetail(Integer notice_num) {
 		return sqlSession.selectOne("mapper.board.noticeDetail",notice_num);
@@ -85,8 +74,6 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	@Override
 	public int modifyQna(QnaVO qnaVO) {
-		System.out.println("dao는?"+ qnaVO.getQna_num());
-		System.out.println("dao는?"+ qnaVO.getQna_pw());
 		return sqlSession.update("mapper.board.modifyQna", qnaVO);
 	}
 	

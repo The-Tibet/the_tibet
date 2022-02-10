@@ -8,13 +8,19 @@ import com.myspring.tibet.board.vo.QnaCommentVO;
 import com.myspring.tibet.board.vo.QnaVO;
 import com.myspring.tibet.board.vo.ReviewVO;
 import com.myspring.tibet.utils.Criteria;
+import com.myspring.tibet.utils.SearchCriteria;
 
 public interface BoardService {
+	// 공지사항 목록
+	 public int countNoticeList(SearchCriteria scri) throws Exception; 
+	// 공지사항 페이징
+	public List<NoticeVO> selectAllNoticesList(SearchCriteria scri) throws Exception;
+	// QNA 목록
+	 public int countQnaList(SearchCriteria scri) throws Exception; 
+	// QNA 페이징
+	public List<QnaVO> selectQnaList(SearchCriteria scri) throws Exception;
+	
 	public void insertQnaWritePage(QnaVO qnaVO) throws Exception;
-	public List<Map<String, Object>> selectQnaList(Criteria cri);
-	public int countQnaListTotal();
-	public List<Map<String, Object>> selectNoticeList(Criteria cri);
-	public int countNoticeListTotal();
 	public NoticeVO noticeDetail(Integer notice_num) throws Exception;
 	public QnaVO qnaDetail(Integer qna_num) throws Exception;
 	public boolean deleteQna(Integer qna_num) throws Exception;

@@ -48,7 +48,7 @@ public class AdminBoardServiceImpl implements AdminBoardSerivce {
 	
 	// 공지사항 목록
 	@Override
-	public int countNoticeListTotal(SearchCriteria scri) throws Exception{
-	    return adminBoardDAO.countNoticeList(scri);
+	public int adminopenNoticeList(SearchCriteria scri) throws Exception{
+	    return adminBoardDAO.adminopenNoticeList(scri);
 	}
 }
