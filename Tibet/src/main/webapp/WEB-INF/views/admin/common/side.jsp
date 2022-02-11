@@ -7,8 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 사이드바메뉴</title>
+    <link rel="stylesheet" href="/resources/css/admin/style.css">
 </head>
-<link rel="stylesheet" href="resources/css/admin/admin-side.css">
+
 
 <body>
 	<div class="sidebar">

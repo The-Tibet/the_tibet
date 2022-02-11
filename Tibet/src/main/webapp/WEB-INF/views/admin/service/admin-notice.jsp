@@ -132,7 +132,7 @@ request.setCharacterEncoding("UTF-8");
 			</ul>
 		</div>
 		<!-- 검색기능 -->
-  <div class="search">
+  <div class="notice-search">
     <select name="searchType">
       <option value="all"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>전체</option>
       <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
