@@ -11,14 +11,12 @@ request.setCharacterEncoding("UTF-8");
 <!DOCTYPE html>
 <html>
 <head>
+<link href="${contextPath}/resources/css/admin/style.css" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title" /></title>
-
 </head>
 <body>
 	<div>
-		<div>
-			<tiles:insertAttribute name="css" />
 		</div>
 		<div>
 			<tiles:insertAttribute name="header" />
@@ -30,9 +28,6 @@ request.setCharacterEncoding("UTF-8");
 			<tiles:insertAttribute name="body" />
 		</div>
 		<div>
-			<tiles:insertAttribute name="js" />
 		</div>
-	</div>
-	
 </body>
 </html>

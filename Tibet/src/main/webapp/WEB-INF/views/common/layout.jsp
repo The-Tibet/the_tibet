@@ -13,7 +13,6 @@ request.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="UTF-8">
 <title><tiles:insertAttribute name="title" /></title>
-
 </head>
 <body>
 	<div>

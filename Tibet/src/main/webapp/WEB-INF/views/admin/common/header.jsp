@@ -18,15 +18,11 @@ request.setCharacterEncoding("UTF-8");
 <link rel="stylesheet" href="resources/fontawesome/css/all.css">
 <link rel="stylesheet" href="resources/css/reset.css">
 <link rel="stylesheet" href="resources/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap" rel="stylesheet">
 <script src="resources/js/jquery-3.6.0.min.js"></script>
-
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <title>header</title>
 </head>
 <body>
@@ -54,6 +50,9 @@ request.setCharacterEncoding("UTF-8");
 				</c:otherwise>
 			</c:choose>
 </ul>
+		<div id="logo">
+			<a href="${contextPath}/main.do">THE TIBET</a>
+		</div>
 	</header>
 
 	<div class="modal">
