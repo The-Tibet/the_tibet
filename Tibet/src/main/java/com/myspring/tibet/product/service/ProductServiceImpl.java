@@ -1,4 +1,4 @@
-package com.myspring.tibet.product.service;
+﻿package com.myspring.tibet.product.service;
 
 import java.util.List;
 
@@ -30,6 +30,7 @@ public class ProductServiceImpl implements ProductService{
 		return productDao.productlistLowprice();
 	}
 	
+	// 현성
 //	@Override	
 //	public List<ProductVO> productListName(int main_category_num) throws Exception {	
 //		return productDao.productlistName(main_category_num);	
@@ -45,18 +46,8 @@ public class ProductServiceImpl implements ProductService{
 		return productDao.productDetail(product_num);
 	}
 	
-	@Override
-	public List<ProductVO> productColor(String product_num) throws Exception {
-		return productDao.productColor(product_num);
-	}	
-	
-	@Override
-	public List<ProductVO> productSize(String product_num) throws Exception {
-		return productDao.productSize(product_num);
-	}
-	
 	@Override	
 	public List<MainCateVO> mainCate() throws Exception {	
 		return productDao.mainCate();	
-	}
+	}	
 }

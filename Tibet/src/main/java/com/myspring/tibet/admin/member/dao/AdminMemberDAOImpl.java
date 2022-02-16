@@ -1,4 +1,4 @@
-package com.myspring.tibet.admin.member.dao;
+﻿package com.myspring.tibet.admin.member.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -31,7 +31,7 @@ public class AdminMemberDAOImpl implements AdminMemberDAO {
         return sqlSession.selectList(queryId,params);
     }
 	
-	// 회원 목록
+	//회원 목록
 	public int countMemberList() {
 		return (Integer) sqlSession.selectOne("mapper.admin.member.countMemberList");
 	}
