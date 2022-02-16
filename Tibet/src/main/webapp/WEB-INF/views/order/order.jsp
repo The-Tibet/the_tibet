@@ -19,10 +19,6 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="/resources/js/addressapi.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-<!-- iamport.payment.js -->
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 </head>
 <body>
@@ -99,22 +95,18 @@
 				<div class="order-middle-priceAll">
 					<div>
 						<div class="f15-555">상품구매금액&nbsp;<div id="middle-price">0</div>원</div>
-						<input type="hidden" id="middle-hidden-price">
 					</div>
 					<span>+</span>
 					<div>
 						<div class="f15-555">배송비&nbsp;<div id="middle-delivery">2,500</div>원</div>
-						<input type="hidden" id="middle-hidden-delivery">
 					</div>
 					<span>-</span>
 					<div>
 						<div class="f15-555">상품할인금액&nbsp;<div id="middle-discount">0</div>원</div>
-						<input type="hidden" id="middle-hidden-discount">
 					</div>
 					<span>=</span>
 					<div>
 						<div class="order-middle-totalPrice pdl20 f25-bd-purple">합계&nbsp;<div class="f25-bd-purple" id="middle-total">0</div>원</div>
-						<input type="hidden" id="middle-hidden-total">
 					</div>
 				</div>
 			</div>
@@ -231,8 +223,7 @@
 					<div class="discount-section-box">
 						<div class="point-div">
 							<label>적립금</label>
-							<input type="text" id="input-use-point" placeholder="0"/>
-							<button type="button" id="btn-use-point" onclick="usePoint()">사용</button>
+							<input type="text" id="input-use-point" value="0"/>
 							<div class="member-point-div">
 								<div>[ 사용 가능한 적립금 :&nbsp;</div><div id="usable-point">0</div><div>원 ]</div>
 							</div>
@@ -323,10 +314,11 @@
 			
 			<!-- 주문번호 생성 -->
 			<input type="hidden" id="generate-num">
-			
+
+			<div id="test-div">test</div>
+
 			<div class="total-price-btn-div">
-				<!-- <button type="button" id="total-price-btn" onclick="goOrder();">결제하기</button> -->
-				<button type="button" id="total-price-btn" onclick="payment();">결제하기</button>
+				<button type="button" id="total-price-btn" onclick="goOrder();">결제하기</button>
 			</div>
 			
 			<!-- 주문 폼 -->
@@ -336,7 +328,13 @@
 		</div>
 	</section>
 	
-	<script>	
+	<script>
+		function test() {
+			let test = document.getElementsByName("pay-checkbox-input").value;
+			document.getElementsById("test-div").innerText = test;
+		}
+		
+	
 		/* 하나만 체크 */
 		function checkDelivery(element) {
 			const checkboxes = document.getElementsByName("delivery-checkbox-input");
@@ -508,33 +506,6 @@
 		}
 		
 		
-		/* 적립금 사용 */
-		function usePoint(){
-			// 적립금 유효성 검사
-			var point = document.getElementById('input-use-point').value;
-			var usablePoint = document.getElementById('hidden-point').value;
-			
-			if (point <= usablePoint) {				
-				// 상품구매금액
-				var priceSum = document.getElementById('middle-hidden-price').value;
-				
-				// 상품할인금액
-				var discount = document.getElementById('middle-hidden-discount').value;
-				
-				// 배송비
-				var delivery = document.getElementById('middle-hidden-delivery').value;
-						
-				// 합계
-				var total = document.getElementById('middle-hidden-total').value;
-				total = total - point;
-				
-				document.getElementById('total-price-div').innerText = total.toLocaleString() + "원";
-			} else {
-				alert("사용 가능한 적립금 금액을 확인해주세요.");
-			}
-		}
-		
-		
 		/* 자동 실행 */
 		window.onload = function(){
 			/* 기본 체크박스 설정 */
@@ -555,7 +526,6 @@
 			}
 			
 			$("#middle-price").text(priceSum.toLocaleString());
-			$("#middle-hidden-price").val(priceSum);
 			
 			// 상품할인금액
 			var discountSum = 0;
@@ -565,23 +535,20 @@
 			}
 			
 			$("#middle-discount").text(discountSum.toLocaleString());
-			$("#middle-hidden-discount").val(discountSum);
 			
 			// 배송비
 			var delivery = 2500;
 			if((priceSum-discountSum) >= 100000){
 				delivery = 0;
 				$("#middle-delivery").text(delivery.toLocaleString());
-				$("#middle-hidden-delivery").val(delivery);
 			} else{
 				$("#middle-delivery").text(delivery.toLocaleString());
-				$("#middle-hidden-delivery").val(delivery);
 			}
 					
 			// 합계
-			var total = priceSum - discountSum + delivery;
+			var total = 0;
+			total = priceSum - discountSum + delivery;
 			$("#middle-total").text(total.toLocaleString());
-			$("#middle-hidden-total").val(total);
 			
 			// 총 주문 금액(상품구매금액+배송비)
 			bottom_total = priceSum + delivery;
@@ -660,25 +627,6 @@
 			}
 			
 			$('#generate-num').val(today + "-" + str);
-		}
-		
-		
-		/* 결제수단 */
-		function payment(){
-			// 결제수단 value 가져오기
-			var orderPay;
-			var obj_length = document.getElementsByName("pay-checkbox-input").length;
-	        for (var j=0; j<obj_length; j++) {
-	            if (document.getElementsByName("pay-checkbox-input")[j].checked == true) {
-	            	orderPay = document.getElementsByName("pay-checkbox-input")[j].value;
-	            }
-	        }
-	        
-	        if(orderPay == '카드결제') {
-	        	iamport();
-	        } else {
-	        	goOrder();
-	        }
 		}
 		
 		
@@ -832,54 +780,11 @@
 				}
 			}
 			
-			//iamport();
 			
 			/* Form Submit */
 			$(".order_form").html(form_contents);		
 			$("#update_point").val(update_point_var);			
-			$(".order_form").submit();		
-		}
-		
-		
-		/* 결제 API */
-		function iamport(){
-			var total = document.getElementById('total-price-div').value;
-			var email = document.getElementById('input-order-email').value;
-			var name = document.getElementById('input-order-person').value;
-			var phone = document.getElementById('input-order-phone').value;
-			var addr1 = document.getElementById('input-order-address1').value;
-			var addr2 = document.getElementById('input-order-address2').value;
-			var zipcode = document.getElementById('input-order-zipcode').value;
-				
-			//가맹점 식별코드
-			IMP.init('imp61062206');
-			IMP.request_pay({
-			    pg : 'html5_inicis',
-			    pay_method : 'card',
-			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : 'The Tibet 결제' , //결제창에서 보여질 이름
-			    amount : 100, //실제 결제되는 가격
-			    buyer_email : email,
-			    buyer_name : name,
-			    buyer_tel : phone,
-			    buyer_addr : addr1 + ' ' + addr2,
-			    buyer_postcode : zipcode
-			}, function(rsp) {
-				console.log(rsp);
-			    if ( rsp.success ) {
-			    	var msg = '결제가 완료되었습니다.';
-			        msg += '고유ID : ' + rsp.imp_uid;
-			        msg += '상점 거래ID : ' + rsp.merchant_uid;
-			        msg += '결제 금액 : ' + rsp.paid_amount;
-			        msg += '카드 승인번호 : ' + rsp.apply_num;
-			        
-			        goOrder();
-			    } else {
-			    	 var msg = '결제에 실패하였습니다.';
-			         msg += '에러내용 : ' + rsp.error_msg;
-			    }
-			    alert(msg);
-			});
+			$(".order_form").submit();			
 		}
 	</script>
 </body>

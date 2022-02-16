@@ -1,4 +1,4 @@
-package com.myspring.tibet.product.vo;
+﻿package com.myspring.tibet.product.vo;
 
 import java.sql.Date;
 
@@ -21,14 +21,12 @@ public class ProductVO {
 	private int product_count;
 	private int main_category_num;
 	private int sub_category_num;
-//	private String color1;
-//	private String color2;
-//	private String color3;
-//	private String size1;
-//	private String size2;
-//	private String size3;
-	private String color;
-	private String size;
+	private String color1;
+	private String color2;
+	private String color3;
+	private String size1;
+	private String size2;
+	private String size3;
 	
 	public String getProduct_num() {
 		return product_num;
@@ -120,52 +118,40 @@ public class ProductVO {
 	public void setSub_category_num(int sub_category_num) {
 		this.sub_category_num = sub_category_num;
 	}
-//	public String getColor1() {
-//		return color1;
-//	}
-//	public void setColor1(String color1) {
-//		this.color1 = color1;
-//	}
-//	public String getColor2() {
-//		return color2;
-//	}
-//	public void setColor2(String color2) {
-//		this.color2 = color2;
-//	}
-//	public String getColor3() {
-//		return color3;
-//	}
-//	public void setColor3(String color3) {
-//		this.color3 = color3;
-//	}
-//	public String getSize1() {
-//		return size1;
-//	}
-//	public void setSize1(String size1) {
-//		this.size1 = size1;
-//	}
-//	public String getSize2() {
-//		return size2;
-//	}
-//	public void setSize2(String size2) {
-//		this.size2 = size2;
-//	}
-//	public String getSize3() {
-//		return size3;
-//	}
-//	public void setSize3(String size3) {
-//		this.size3 = size3;
-//	}
-	public String getColor() {
-		return color;
+	public String getColor1() {
+		return color1;
 	}
-	public void setColor(String color) {
-		this.color = color;
+	public void setColor1(String color1) {
+		this.color1 = color1;
 	}
-	public String getSize() {
-		return size;
+	public String getColor2() {
+		return color2;
 	}
-	public void setSize(String size) {
-		this.size = size;
+	public void setColor2(String color2) {
+		this.color2 = color2;
+	}
+	public String getColor3() {
+		return color3;
+	}
+	public void setColor3(String color3) {
+		this.color3 = color3;
+	}
+	public String getSize1() {
+		return size1;
+	}
+	public void setSize1(String size1) {
+		this.size1 = size1;
+	}
+	public String getSize2() {
+		return size2;
+	}
+	public void setSize2(String size2) {
+		this.size2 = size2;
+	}
+	public String getSize3() {
+		return size3;
+	}
+	public void setSize3(String size3) {
+		this.size3 = size3;
 	}
 }

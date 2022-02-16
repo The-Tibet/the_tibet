@@ -41,7 +41,7 @@
                            <tr id="tr">
                               <td class="td-cart-check">
                                  <input type="checkbox" onClick="itemSum(this.form);" name="cartChk" value="${cart.product_price * cart.product_count}"/>
-                                 <input type="checkbox" onClick="itemSum(this.form);" id="td-cart-check-checkbox" name="cart_num" value="${cart.cart_num}" />
+                                 <input type="hidden" onClick="itemSum(this.form);" id="td-cart-check-checkbox" name="cart_num" value="${cart.cart_num}" />
                               </td>
                               <td class="td-cart-img"><a href="#"><img src="resources/${cart.product_thumbnail}" style="height:100px;"/></a></td> 
                               <td class="td-cart-info">
@@ -107,12 +107,15 @@
                </tbody>
             </table>
          </div>
+         
+         <div id="test1"></div>
+         <div id="test2"></div>
 
          <div class="cart-go-to-check-box">
             <!-- <button class="cart-go-to-check-btn mgb100" data-thumbnail="">
                주문하기
             </button> -->
-            <button type="button" class="cart-go-to-check-btn mgb100" onclick="fnGetdata();">
+            <button type="submit" class="cart-go-to-check-btn mgb100" onclick="fnGetdata();">
                <p class="f18-bd-fff">주문하기</p>
             </button>
             <input type="hidden" name="hiddenValue" id="hiddenValue" value=""/>
@@ -193,17 +196,17 @@
          var count = frm.cartChk.length;
          
          for(var i=1; i<count; i++){
-		 	if( frm.cartChk[i].checked == false ){
-		    	frm.cart_num[i-1].checked = false;
-		    }
-		 }
+
+         }
          
-         for(var k=1; k<count; k++){			   
-		    if( frm.cartChk[k].checked == true ){
-		    	frm.cart_num[k-1].checked = true;
-		    	priceSum += parseInt(frm.cartChk[k].value);
-		    }
-		 }
+         for(var k=1; k<count; k++){
+            document.getElementById('test1').innerText = frm.cartChk[k].checked;
+            
+             if( frm.cartChk[k].checked == true ){
+                priceSum += parseInt(frm.cartChk[k].value);
+                document.getElementById('test2').innerText = priceSum;
+             }
+         }
          
          document.getElementById('total-product-td').innerText = priceSum.toLocaleString() + "원";
          
@@ -230,24 +233,21 @@
          document.getElementById('total-price-td').innerText = "= " + total.toLocaleString() + "원";
       }
       
-      /* cart_num 배열 & 상품 체크박스 체크 확인*/
+      /* cart_num 배열 */
       function fnGetdata(){
            var obj = $("[name=cart_num]");
            var chkArray = new Array(); // 배열 선언
     
-           $('input:checkbox[name=cart_num]:checked').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
+           $('input:hidden[name=cart_num]').each(function() { // 체크된 체크박스의 value 값을 가지고 온다.
                chkArray.push(this.value);
            });
            $('#hiddenValue').val(chkArray);
            
-           // 상품 체크박스 체크 확인
-           var isCartChk = $("input:checkbox[name='cartChk']").is(":checked");
+           /* var isCartChk = $("input:checkbox[name='cartChk']").is(":checked");
            if(!isCartChk){
-               alert("주문할 상품을 선택해주세요.");
+               alert("계절의 종류를 한개 이상 선택해주세요.");
                return false;
-           } 
-           
-           $("#order_form").submit();
+           } */
       }
    </script>
 </body>

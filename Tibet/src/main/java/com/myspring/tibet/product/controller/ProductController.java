@@ -1,4 +1,4 @@
-package com.myspring.tibet.product.controller;
+﻿package com.myspring.tibet.product.controller;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;

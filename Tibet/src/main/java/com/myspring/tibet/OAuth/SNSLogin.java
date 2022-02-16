@@ -1,4 +1,4 @@
-package com.myspring.tibet.OAuth;
+﻿package com.myspring.tibet.OAuth;
 
 import java.util.Iterator;
 
@@ -31,49 +31,53 @@ public class SNSLogin {
 	public String getNaverAuthURL() {
 		return this.oauthService.getAuthorizationUrl();
 	}
-	
-	public MemberVO getUserProfile(String code) throws Exception { 
+
+	public MemberVO getUserProfile(String code) throws Exception {
 		OAuth2AccessToken accessToken = oauthService.getAccessToken(code);
-	 
+		
 		OAuthRequest request = new OAuthRequest(Verb.GET, this.sns.getProfileUrl());
 		oauthService.signRequest(accessToken, request);
-	 
-		Response response = oauthService.execute(request); 
-		return parseJson(response.getBody()); 
+		
+		Response response = oauthService.execute(request);
+		return parseJson(response.getBody());
 	}
-	 
+
 	private MemberVO parseJson(String body) throws Exception {
 		System.out.println("============================\n" + body + "\n==================");
 		MemberVO user = new MemberVO();
-	 
-		ObjectMapper mapper = new ObjectMapper(); 
-		JsonNode rootNode =mapper.readTree(body);
-	 
-		if (this.sns.isGoogle()) { 
-			String id = rootNode.get("id").asText(); 
-			if(sns.isGoogle()) 
+		
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode rootNode = mapper.readTree(body);
+		
+		if (this.sns.isGoogle()) {
+			String id = rootNode.get("id").asText();
+			if (sns.isGoogle())
 				user.setGoogleid(id);
-			user.setUser_name(rootNode.get("displayName").asText()); 
-			JsonNode nameNode = rootNode.path("name"); 
-			String uname = nameNode.get("familyName").asText() + nameNode.get("givenName").asText(); 
+			user.setUser_name(rootNode.get("displayName").asText());
+			JsonNode nameNode = rootNode.path("name");
+			String uname = nameNode.get("familyName").asText() + nameNode.get("givenName").asText();
 			user.setUser_name(uname);
-	 
+
 			Iterator<JsonNode> iterEmails = rootNode.path("emails").elements();
-			while(iterEmails.hasNext()) { 
-				JsonNode emailNode = iterEmails.next(); 
-				String type = emailNode.get("type").asText(); 
-				if (StringUtils.equals(type, "account")) { 
-					user.setUser_email(emailNode.get("value").asText()); 
-					break; 
-				} 
+			while(iterEmails.hasNext()) {
+				JsonNode emailNode = iterEmails.next();
+				String type = emailNode.get("type").asText();
+				if (StringUtils.equals(type, "account")) {
+					user.setUser_email(emailNode.get("value").asText());
+					break;
+				}
 			}
-		} else if (this.sns.isNaver()) { 
+			
+		} else if (this.sns.isNaver()) {
 			JsonNode resNode = rootNode.get("response");
 			user.setNaverid(resNode.get("id").asText());
-			user.setUser_email(resNode.get("email").asText()); 
+			user.setUser_name(resNode.get("nickname").asText());
+			user.setUser_email(resNode.get("email").asText());
 		}
 		
-		return user; 
+		return user;
 	}
-}
-
+	
+	}
+	
+	

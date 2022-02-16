@@ -1,4 +1,4 @@
-package com.myspring.tibet.cart.vo;
+﻿package com.myspring.tibet.cart.vo;
 
 import java.util.Date;
 

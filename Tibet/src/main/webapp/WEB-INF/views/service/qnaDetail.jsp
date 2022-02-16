@@ -103,8 +103,8 @@ request.setCharacterEncoding("UTF-8");
 				</div>
 				<div>
 					<c:if test="${memberInfo.user_id eq qna.user_id}">
-						<input type="button" id="btn-modify" value="수정" onclick="location.href='${contextPath}/qnaModifyForm${qna.qna_num}.do'">
-						<input type="button" id="btn-delete" value="삭제" onclick="del(${qna.qna_num})">
+						<input type="button" value="수정" onclick="location.href='${contextPath}/qnaModifyForm${qna.qna_num}.do'">
+						<input type="button" value="삭제" onclick="del(${qna.qna_num})">
 					</c:if>
 				</div>
 			</div>
