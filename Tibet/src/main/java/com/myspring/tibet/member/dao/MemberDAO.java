@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.member.dao;
+package com.myspring.tibet.member.dao;
 
 import java.util.Map;
 

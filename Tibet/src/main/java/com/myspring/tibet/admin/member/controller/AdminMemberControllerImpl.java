@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.admin.member.controller;
+package com.myspring.tibet.admin.member.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.tibet.admin.member.service.AdminMemberService;
@@ -22,11 +21,6 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 	private AdminMemberService adminMemberService;
 	@Autowired
 	private MemberVO memberVO;
-	
-	// 메인
-	@RequestMapping(value = "/admin-main.do", method = RequestMethod.GET)
-	public void adminmain() throws Exception {
-}
 	
 	// 회원 목록페이지
 	@RequestMapping(value = "/admin-memberlist.do")
@@ -53,5 +47,3 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 		return "redirect:/admin-memberlist.do";
 	}
 }
-
-	

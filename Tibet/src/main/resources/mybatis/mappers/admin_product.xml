@@ -3,7 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.admin.product">
+<mapper namespace="mappers.admin.product">
 
 	<resultMap id="productResult" type="productVO">
 		<result property="product_num" column="product_num" />
@@ -18,8 +18,6 @@
 		<result property="product_img2" column="product_img2" />
 		<result property="product_img3" column="product_img3" />
 		<result property="product_count" column="product_count" />
-		<result property="main_category_num" column="main_category_num" />
-		<result property="sub_category_num" column="sub_category_num" />
 	</resultMap>
 
 	<!-- 상품 상세 -->
@@ -37,20 +35,44 @@
 		main_category_num
 		from product where product_num=#{product_num}
 	</select>
-	<!-- 상품 페이징 -->
-<select id="selectAllProductList" resultType="hashmap" parameterType="hashmap">
-     	SELECT cast(@num:=@num+1 AS signed integer) AS num,
-		    product_num,
-			product_name,
-			product_detail,
-			product_price,
-			product_count
-		FROM (SELECT @num:=(#{pageStart}/#{perPageNum})*(${perPageNum})) AS p, product
-		ORDER BY product_date DESC
-		LIMIT #{pageStart}, #{perPageNum}
-</select>
-	<!-- 상품 목록 -->
-	<select id="adminopenProductList" parameterType="productVO" resultType="int">
-		select count(*) from product
-	</select>	
+	
+	<!-- 상품 리스트 -->
+	<select id="productListName" resultType="com.myspring.tibet.product.vo.ProductVO">
+		select * , (case when sub_category_num = '101' then '신상품'
+		when sub_category_num = '201' then '재킷&amp;점퍼'
+		when sub_category_num = '202' then '코트'
+		when sub_category_num = '301' then '티셔츠'
+		when sub_category_num = '302' then '셔츠'
+		when sub_category_num = '303' then '후드&amp;맨투맨'
+		when sub_category_num = '304' then '니트&amp;가디건'
+		when sub_category_num = '305' then '조끼'
+		when sub_category_num = '401' then '팬츠'
+		when sub_category_num = '402' then '쇼츠'
+		when sub_category_num = '501' then '숄더백'
+		when sub_category_num = '502' then '백팩'
+		when sub_category_num = '503' then '크로스백'
+		when sub_category_num = '504' then '메신저백'
+		when sub_category_num = '601' then '모자'
+		when sub_category_num = '602' then '반지&amp;팔찌'
+		when sub_category_num = '603' then '선글라스'
+		when sub_category_num = '604' then '벨트'
+		when sub_category_num = '701' then '세일'
+		else '에러' end) as 'sub_category_name',
+		(case when main_category_num = '1' then 'NEW'
+		when main_category_num = '2' then 'OUTER'
+		when main_category_num = '3' then 'top'
+		when main_category_num = '4' then 'PANTS'
+		when main_category_num = '5' then 'BAG'
+		when main_category_num = '6' then 'ACC'
+		when main_category_num = '7' then 'SALE'
+		else'몰라' end) as 'main_category_name' from product where main_category_num
+		like '#{main_category_num}' ORDER BY product_name;
+	</select>
+	
+	<!--상품등록-->
+	<insert id="registerproduct">
+		insert into product (product_num, product_name, product_price, product_color, product_thumbnail, product_count, product_size )
+		values (product #{product_num}, #{product_name}, #{product_price}, #{product_color}, #{product_thumbnail}, #{product_count}, #{product_size})
+	</insert>
+	
 </mapper>
