@@ -19,3 +19,4 @@ public interface AdminBoardSerivce {
 	// 공지사항 페이징
 	public List<NoticeVO> selectAllNoticesList(SearchCriteria scri) throws Exception;
 }
+

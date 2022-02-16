@@ -20,6 +20,20 @@ public class MemberDAOImpl implements MemberDAO{
 	private static final String GET_BY_SNS_GOOGLE = NS + ".getBySnsGoogle";
 	
 	@Override
+	public MemberVO getBySns(MemberVO snsUser) {
+		if (StringUtils.isNotEmpty(snsUser.getNaverid())) {
+			return sqlSession.selectOne(GET_BY_SNS_NAVER, snsUser.getNaverid());
+		} else {
+			return sqlSession.selectOne(GET_BY_SNS_GOOGLE, snsUser.getGoogleid());
+		}
+	}
+
+	
+	@Override
+	public int updatePoint(Map<String, Object> map) throws DataAccessException {
+		return sqlSession.update("mapper.member.updatePoint", map);
+	}
+	@Override
 	public MemberVO login(Map loginMap) throws DataAccessException{
 		MemberVO member = (MemberVO)sqlSession.selectOne("mapper.member.login", loginMap);
 	    return member;
@@ -64,24 +78,6 @@ public class MemberDAOImpl implements MemberDAO{
 		return sqlSession.update("mapper.member.modifyMember", vo);		
 	}
 
-	// SNS관련 기능들
-//	@Override 
-//	public MemberVO getBySns(MemberVO memberVO) throws DataAccessException { 
-//		MemberVO member = sqlSession.selectOne("mapper.member.getBySnsNaver", memberVO); 
-//		return member; 
-//	}
-	  
-	@Override
-	public MemberVO getBySns(MemberVO snsUser) {
-		if (StringUtils.isNotEmpty(snsUser.getNaverid())) {
-			return sqlSession.selectOne(GET_BY_SNS_NAVER, snsUser.getNaverid());
-		} else {
-			return sqlSession.selectOne(GET_BY_SNS_GOOGLE, snsUser.getGoogleid());
-		}
-	}
 
-	@Override
-	public int updatePoint(Map<String, Object> map) throws DataAccessException {
-		return sqlSession.update("mapper.member.updatePoint", map);
-	}
+
 }

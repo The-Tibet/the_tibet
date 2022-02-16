@@ -24,12 +24,18 @@
 
 	<!--회원 목록 페이징 -->
 	<select id="selectAllmemberList" resultType="hashmap" parameterType="hashmap">
-    <![CDATA[
-     	SELECT cast(@num:=@num+1 AS signed integer) AS num, user_id, user_name, user_birth, user_gender, user_membership, user_phone, user_point, user_joinDate
+     	SELECT cast(@num:=@num+1 AS signed integer) AS num, 
+     		user_id, 
+     		user_name, 
+     		user_birth, 
+     		user_gender, 
+     		user_membership, 
+     		user_phone, 
+     		user_point, 
+     		user_joinDate
 		FROM (SELECT @num:=(#{pageStart}/#{perPageNum})*(${perPageNum})) AS m, user
 		ORDER BY user_joinDate DESC
 		LIMIT #{pageStart}, #{perPageNum}
-    ]]>
 	</select>
 	
 	<!--회원 강제탈퇴 -->
@@ -40,6 +46,15 @@
 	<!--회원 목록-->
 	<select id="countMemberList" resultType="Integer">
 		select count(*) from user
+	</select>
+	<!--회원 상세 -->
+	<select id="memberDetail"
+		resultType="com.myspring.tibet.board.vo.NoticeVO">
+		select notice_num, notice_title, notice_content,
+		cast(notice_date AS DATE)
+		as notice_date, notice_img1, notice_img2,
+		notice_img3, user_id from notice where
+		notice_num=#{notice_num}
 	</select>
 	
 </mapper>

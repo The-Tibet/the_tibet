@@ -4,15 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.myspring.tibet.admin.board.dao.AdminBoardDAO;
 import com.myspring.tibet.board.vo.NoticeVO;
 import com.myspring.tibet.utils.SearchCriteria;
 
 @Service("adminBoardService")
-@Transactional(propagation = Propagation.REQUIRED)
 public class AdminBoardServiceImpl implements AdminBoardSerivce {
 	@Autowired
 	AdminBoardDAO adminBoardDAO;

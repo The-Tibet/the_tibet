@@ -43,7 +43,6 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(adminBoardSerivce.adminopenNoticeList(scri));
 		List<NoticeVO> list = adminBoardSerivce.selectAllNoticesList(scri);
-		
 		mav.addObject("list", list);
 		mav.addObject("pageMaker", pageMaker);
 		return mav;
@@ -146,7 +145,7 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		mav.setViewName("/admin-noticeWrite");
 		return mav;
 	}
-
+	// 공지사항 상세 페이지
 	@Override
 	@RequestMapping(value = "/admin-noticeDetail{notice_num}.do", method = RequestMethod.GET)
 	public ModelAndView adminnoticeDetail(@PathVariable("notice_num") Integer notice_num, ModelAndView mav)

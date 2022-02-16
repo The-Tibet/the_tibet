@@ -14,7 +14,7 @@ request.setCharacterEncoding("UTF-8");
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>공지사항</title>
-<link rel="stylesheet" href="resources/css/notice.css">
+<link rel="stylesheet" href="resources/css/admin/admin-notice.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
 	<script type="text/javascript">
@@ -38,6 +38,7 @@ request.setCharacterEncoding("UTF-8");
 			});
 		});
 		function deleteValue(){
+			debugger;
 			var url = "noticedelete";    // Controller로 보내고자 하는 URL (.dh부분은 자신이 설정한 값으로 변경해야됨)
 			var valueArr = new Array();
 		    var list = $("input[name='RowCheck']");
@@ -50,7 +51,14 @@ request.setCharacterEncoding("UTF-8");
 		    	alert("선택된 글이 없습니다.");
 		    }
 		    else{
+		    	
+		    	debugger;
 				var chk = confirm("정말 삭제하시겠습니까?");				 
+				
+				if(!chk){
+					return;
+				}
+				
 				$.ajax({
 				    url : url,                // 전송 URL
 				    type : 'POST',                // GET or POST 방식
@@ -77,18 +85,12 @@ request.setCharacterEncoding("UTF-8");
 <body>
 	<section>
 		<div class="content">
-			<div class="table-title">
-				<table>게시판 _ 공지사항
-				</table>
 			</div>
-		</div>
+		<!-- 등록 삭제 버튼 -->
 		<div class="table-cont">
-			<div class="table-cont-btn">
-				<button type="button"
-					onclick="location.href='${contextPath}/admin-noticeWrite.do'"
-					class="btn-text b01">등록</button>
-				<input type="button" value="삭제" class="btn btn-outline-info"
-					onclick="deleteValue();">
+			<div align="right">
+				<button type="button" onclick="location.href='${contextPath}/admin-noticeWrite.do'" class="btn-lg btn-dark">등록</button>
+				<input type="button" value="삭제" class="btn-lg btn-dark" onclick="deleteValue();">
 			</div>
 		</div>
 		<form role="form" method="get">
@@ -96,15 +98,14 @@ request.setCharacterEncoding("UTF-8");
 			<table class="service-notice-front">
 				<thead class="service-notice-title mgb15">
 					<tr>
-						<th scope="col"><input id="allCheck" type="checkbox"
-							name="allCheck" /></th>
+						<th scope="col"><input id="allCheck" type="checkbox" name="allCheck" /></th>
 						<th scope="col">번호</th>
 						<th scope="col">제목</th>
 						<th scope="col">작성자</th>
 						<th scope="col">작성일</th>
 					</tr>
 				</thead>
-
+		<!-- 게시판 목록조회 -->
 				<tbody class="service-notice-content mgb20">
 					<c:forEach items="${list}" var="nList">
 						<tr>

@@ -14,76 +14,59 @@ request.setCharacterEncoding("UTF-8");
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>공지사항</title>
-<link rel="stylesheet" href="resources/css/reset.css">
-<link rel="stylesheet" href="resources/css/style.css">
-<link rel="stylesheet" href="resources/css/noticeDetail.css">
-<link rel="stylesheet" href="resources/fontawesome/css/all.css">
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<link rel="stylesheet" href="resources/css/admin/admin-notice.css">
 </head>
 <body>
-	<section>
-		<div class="enter-table">
-			<div class="enter-table-not mgb15">
-				<div class="enter-table-not-tit">
-					<label class="enter-not01">제목</label> <label class="enter-not02"
-						id="notice01">${notice.notice_title}</label>
-				</div>
+	<table class="table table-hover table-responsive">
+		<tr>
+			<th>제목</th>
+			<td>${notice.notice_title}</td>
+		</tr>
+		<tr>
+			<th>작성자</th>
+			<td>${notice.user_id}</td>
+		</tr>
+		<tr>
+			<th>작성일</th>
+			<td><fmt:formatDate value="${notice.notice_date}"
+					pattern="yyyy-MM-dd" /></td>
+		<tr>
+			<th>내용</th>
+			<td>${notice.notice_content}</td>
+		</tr>
+			<c:choose>
+				<c:when
+					test="${notice.notice_img1 eq null || notice.notice_img1 eq ''}"></c:when>
+				<c:otherwise>
+					<div>
+						<img alt="#" src="resources/img/${notice_notice_img1}">
+					</div>
 
-				<div class="enter-table-not-name">
-					<label class="enter-not01">작성자</label> <label class="enter-not02">${notice.user_id}</label>
-				</div>
-				<div class="enter-table-not-date">
-					<label class="enter-not01">작성일</label> <label class="enter-not02">
-						<fmt:formatDate value="${notice.notice_date}" pattern="yyyy-MM-dd" />
-					</label>
-				</div>
-
-				<div class="enter-table-content">${notice.notice_content}</div>
-				<p>
-					<br>
-				</p>
-				<div class="enter-table-file">
-					<c:choose>
-						<c:when
-							test="${notice.notice_img1 eq null || notice.notice_img1 eq ''}"></c:when>
-						<c:otherwise>
-							<div>
-								<img alt="#" src="resources/img/${notice_notice_img1}">
-							</div>
-
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${notice_notice_img2 eq null || notice_notice_img2 eq ''}"></c:when>
-						<c:otherwise>
-							<div>
-								<img alt="#" src="resources/img/${notice_notice_img2}">
-							</div>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${notice_notice_img3 eq null || notice_notice_img3 eq ''}"></c:when>
-						<c:otherwise>
-							<div>
-								<img alt="#" src="resources/img/${notice_notice_img3}">
-							</div>
-						</c:otherwise>
-					</c:choose>
-				</div>
-			</div>
-		</div>
-		<div class="box-btn">
-			<div class="box-btn-text">
-				<button type="button"
-					onclick="location.href='${contextPath}/admin-notice.do'"
-					class="btn-text">목록</button>
-			</div>
-		</div>
-		<input type="button" value="수정"
-			onclick="location.href='${contextPath}/noticeModifyForm${notice.notice_num}.do'">
-		<input type="button" value="삭제" onclick="del(${notice.notice_num})">
-		</div>
-	</section>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when
+					test="${notice_notice_img2 eq null || notice_notice_img2 eq ''}"></c:when>
+				<c:otherwise>
+					<div>
+						<img alt="#" src="resources/img/${notice_notice_img2}">
+					</div>
+				</c:otherwise>
+			</c:choose>
+			<c:choose>
+				<c:when
+					test="${notice_notice_img3 eq null || notice_notice_img3 eq ''}"></c:when>
+				<c:otherwise>
+					<div>
+						<img alt="#" src="resources/img/${notice_notice_img3}">
+					</div>
+				</c:otherwise>
+			</c:choose>
+	</table>
+	<input type="button" value="수정" class="btn btn-dark btn-lg"
+		onclick="location.href='${contextPath}/noticeModifyForm${notice.notice_num}.do'">
+	<input type="button" value="삭제" class="btn btn-dark btn-lg"
+		onclick="del(${notice.notice_num})">
 	<script>
 	function del(notice_num) {
 		var chk = confirm("정말 삭제하시겠습니까?");

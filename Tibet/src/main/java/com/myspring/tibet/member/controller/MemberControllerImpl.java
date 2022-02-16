@@ -15,6 +15,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,7 +51,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
-	@RequestMapping(value = "/auth/{snsService}/callback", method = { RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/auth/{snsService}/callback",method = { RequestMethod.GET, RequestMethod.POST})
 	public String snsLoginCallback(@PathVariable String snsService,
 			Model model, @RequestParam String code, HttpSession session) throws Exception {		
 		logger.info("snsLoginCallback: service={}", snsService);
@@ -64,7 +66,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		// 2. access_token을 이용해서 사용자 profile 정보 가져오기
 		SNSLogin snsLogin = new SNSLogin(sns);
 		
-		MemberVO snsUser = snsLogin.getUserProfile(code); // 1,2踰� �룞�떆
+		MemberVO snsUser = snsLogin.getUserProfile(code);
 		System.out.println("Profile>>" + snsUser);
 		
 		// 3. DB 해당 유저가 존재하는 체크 (googleid, naverid 컬럼 추가)
@@ -79,7 +81,6 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			// 4. 존재시 강제로그인
 		    session.setAttribute("isLogOn", true);
 		    
-			model.addAttribute("redirect:/main.do");
 		}
 		return "/main.do";
 		
@@ -95,6 +96,10 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		mav.addObject("naver_url", snsLogin.getNaverAuthURL()); 
 		mav.setViewName("/login");
 	  
+		/* 구글 코드 발행 URL */
+		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+		model.addAttribute("google_url", url);
 		return mav;
 	}
 	
@@ -141,14 +146,6 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 			session.setAttribute("memberInfo", memberVO);
 			
 			mav.setViewName("redirect:/main.do");
-
-//			String action = (String) session.getAttribute("action"); // 주문도중에 로그인시 주문창으로
-//
-//			if (action != null && action.equals("/order.do")) { // 오더 컨트롤러 만들고 수정해야됨
-//				mav.setViewName("forward:" + action);
-//			} else {
-//				mav.setViewName("redirect:/main.do");
-//			}
 
 		} else {
 			String message = "아이디 또는 비밀번호가 틀렸습니다. 다시 로그인 해주세요.";

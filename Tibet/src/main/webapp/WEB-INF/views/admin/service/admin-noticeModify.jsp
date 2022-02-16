@@ -14,8 +14,7 @@ request.setCharacterEncoding("UTF-8");
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>공지사항 수정</title>
-<link rel="stylesheet" href="resources/css/style.css">
-<link rel="stylesheet" href="resources/css/qnaWrite.css">
+<link rel="stylesheet" href="resources/css/admin/admin-layout.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap">
@@ -28,51 +27,51 @@ request.setCharacterEncoding("UTF-8");
 
 </head>
 <body>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <h2 class="text-center">게시글 작성</h2>
 	<form action="${contextPath}/noticeModify.do" id="noticeMod" method="post">
-
-		<section>
-			<div class="qna-ask">
-				<div class="form">
-					<div class="qna-ask-form">
-						<label>제목</label> <input type="text" class="input" id="notice_title"
-							name="notice_title" value="">
-					</div>
+          <table class="table table-striped">
+            <tr>
+                <td>제목</td>
+                <td><input type="text"  class="form-control" name="notice_title"></td>
+            </tr>
 					<%
 					session.getAttribute("memberInfo");
 					%>
-					<input type="hidden" id="user_id" name="user_id"
-						value="${memberInfo.user_id}">
-					</div>
-					</div>
-					<div class="qna-ask-form">
-						<label>내용</label>
-						<textarea id="summernote" name="notice_content"></textarea>
-					</div>
-				<div class="qna-ask-form-img">
-						<div>
-						<label>이미지 첨부</label><input class="qna-ask-form-img-btn"
-							type="file" name="notcie_img1" value='<c:out value="${notcie.notcie_img1}"/>'>
-						</div>
-						<div>	
-							<label>이미지 첨부</label><input class="qna-ask-form-img-btn"
-							type="file" name="notcie_img2" value='<c:out value="${notcie.notcie_img2}"/>'>
-						</div>
-						<div>
-							<label>이미지 첨부</label><input class="qna-ask-form-img-btn"
-							type="file" name="notcie_img3" value='<c:out value="${notcie.notcie_img3}"/>'>
-						</div>	
-					</div>
-			<div class="box-btn">
-					<div class="box-btn-text">
-						<button type="button" class="btn-text" id="button-reg"
-							onclick="javascript:submit_check('${contextPath}/admin-notice.do')">수정</button>
-						<button type="button" class="btn-text" id="button-can"
-							onclick="javascript:delete_check()">취소</button>
-					</div>
-			</div>
-		</section>
+				<input type="hidden" id="관리자" name="user_id" value="${memberInfo.user_id}">
+            <tr>
+                <td>글내용</td>
+                <td><textarea id="summernote" rows="10" cols="50" name="notice_content" class="form-control"></textarea></td>
+            </tr>
 
-	</form>
+            <tr>
+                <td colspan="2"  class="text-center">
+                    <input type="submit" value="글쓰기" class="btn btn-success"
+              	onclick="javascript:submit_check('${contextPath}/notice.do')">
+                    <input type="reset" value="취소" class="btn btn-warning"
+                    	onclick="javascript:delete_check()">
+                </td>
+            </tr>
+          </table>
+					<div class="form-group form_file">
+						<div>
+							<label>이미지 첨부</label> 
+							<input class="form-control form_point_color01" type="file" name="notice_img1">
+						</div>
+						<div>
+							<label>이미지 첨부</label> 
+							<input class="form-control form_point_color01" type="file" name="notice_img2">
+						</div>
+						<div>
+							<label>이미지 첨부</label> 
+							<input class="form-control form_point_color01" type="file" name="notice_img3">
+						</div>
+						</div>
+        </form>
+        </div>
+        </div>
 	<script>
 	   $('#summernote').summernote({
 			height: 450,

@@ -7,21 +7,23 @@ import org.springframework.stereotype.Service;
 
 import com.myspring.tibet.admin.product.dao.AdminProductDAO;
 import com.myspring.tibet.product.vo.ProductVO;
+import com.myspring.tibet.utils.Criteria;
 
 @Service("adminProductService")
 public class AdminProductServiceImpl implements AdminProductService{
 	@Autowired
 	private AdminProductDAO adminProductDAO;
 	
-	// 상품 상세
+	// 공지사항 페이징
 	@Override
-	public List<ProductVO> productListName(int main_category_num) throws Exception {
-		return adminProductDAO.productlistName(main_category_num);
+    public  List<ProductVO> selectAllProductList(Criteria cri) throws Exception {
+	    return adminProductDAO.selectAllProductList(cri);
 	}
 	
-	// 상품 목록
+	// 공지사항 목록
 	@Override
-	public ProductVO productDetail(String product_num) throws Exception {
-		return adminProductDAO.productDetail(product_num);
+	public int adminopenProductList(Criteria cri) throws Exception{
+	    return adminProductDAO.adminopenProductList(cri);
 	}
+
 }

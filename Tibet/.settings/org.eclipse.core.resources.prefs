@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/myspring/tibet/member/controller/MemberControllerImpl.java=UTF-8
 encoding//src/main/java/com/myspring/tibet/order/controller/OrderControllerImpl.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/service/admin-notice.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/admin/service/admin-noticeDetail.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/service/qnaWrite.jsp=UTF-8
 encoding//src/main/webapp/resources/css/style.css=UTF-8

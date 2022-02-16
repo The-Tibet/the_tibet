@@ -57,6 +57,7 @@
 							<button type="button" class="kakao-btn"><img src="resources/img/kakao.png"></button>
 						</div>
 						<div class="naver">
+						${naver_url}
 							<a href="${naver_url}">
 								<button type="button" class="naver-btn"><img src="resources/img/naver.png"></button>
 							</a>						
