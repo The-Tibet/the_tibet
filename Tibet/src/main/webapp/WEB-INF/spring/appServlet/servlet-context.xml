@@ -27,13 +27,14 @@
 	 
 	 <!-- SNS 로그인 기능 -->
 	<!--  네이버 -->
-	<beans:bean id="naverClientID" class="java.lang.String"> <beans:constructor-arg value="o6jRQEpcEloJABTo13m5" />
+	<beans:bean id="naverClientID" class="java.lang.String">
+	   <beans:constructor-arg value="o6jRQEpcEloJABTo13m5" />
     </beans:bean>
 	<beans:bean id="naverClientSecret" class="java.lang.String">
 		<beans:constructor-arg value="c0XgJcssI5" />
 	</beans:bean>
 	<beans:bean id="naverRedirectUrl" class="java.lang.String">
-		<beans:constructor-arg value="http://localhost:8080/tibet/auth/naver/callback" />
+		<beans:constructor-arg value="http://localhost:8080/tibet/main.do" />
 	</beans:bean>
 	<beans:bean id="naverSns" class="com.myspring.tibet.OAuth.SnsVO">
 		<beans:constructor-arg value="naver" />

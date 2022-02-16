@@ -67,7 +67,7 @@
 	</delete>
 
 	<!-- 회원가입 -->   
-	<insert id="insertNewMember" parameterType="memberVO" >
+	<insert id="insertNewMember" parameterType="memberVO">
   	<![CDATA[
        insert into user(user_id, user_pw, user_name, user_birth, user_email, user_phone, user_gender, user_zip, user_addr1, user_addr2, user_mailSend)
       values(#{user_id}, #{user_pw}, #{user_name}, #{user_birth}, #{user_email}, #{user_phone}, #{user_gender}, #{user_zip}, #{user_addr1}, #{user_addr2}, #{user_mailSend})                                    
@@ -89,13 +89,4 @@
 		update tibetdb.user set user_point=#{user_point} where user_id=#{user_id}
 	</update>
 	
-		<!-- SNS로그인 -->
-    <select id="getBySnsNaver" resultType="memberVO">
-        select * from user where naverid = #{naverid}
-    </select>
-    
-    <select id="getBySnsGoogle" resultType="memberVO">
-        select * from user where googleid = #{googleid}
-    </select>
-
 </mapper>

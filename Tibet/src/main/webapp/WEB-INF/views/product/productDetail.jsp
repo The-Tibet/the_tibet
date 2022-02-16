@@ -81,9 +81,9 @@
 							<label for="color_select">-옵션을 선택해주세요-</label>
 							<select id="color_select">
 								<option value="선택" selected>-옵션을 선택해주세요-</option>
-								<option value="${vo.color1}">${vo.color1}</option>
-								<option value="${vo.color2}">${vo.color2}</option>
-								<option value="${vo.color3}">${vo.color3}</option>
+								<c:forEach var="c" items="${color}" varStatus="i">
+									<option value="${c.product_color}">${c.product_color}</option>
+								</c:forEach>
 							</select>
 						</div>
 					</div>
@@ -95,9 +95,9 @@
 							<label for="size_select">-옵션을 선택해주세요-</label>
 							<select id="size_select">
 								<option value="선택" selected>-옵션을 선택해주세요-</option>
-								<option value="${vo.size1}">${vo.size1}</option>
-								<option value="${vo.size2}">${vo.size2}</option>
-								<option value="${vo.size3}">${vo.size3}</option>
+								<c:forEach var="s" items="${size}" varStatus="i">
+									<option value="${s.product_size}">${s.product_size}</option>
+								</c:forEach>
 							</select>
 						</div>
 					</div>

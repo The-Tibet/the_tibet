@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.main;
+package com.myspring.tibet.main;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

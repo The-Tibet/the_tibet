@@ -14,80 +14,152 @@ request.setCharacterEncoding("UTF-8");
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>관리자-상품</title>
 <link rel="stylesheet" href="resources/css/admin/admin-product.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap"
+	rel="stylesheet">
+
+
+<script>
+        function selectAll(selectAll)  {
+         const checkboxes 
+            = document.getElementsByName('box');
+  
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = selectAll.checked;
+            })
+        }
+    </script>
+
+<script>
+        function button_event01(){
+        
+        if (confirm("등록 하시겠습니까?") == false){    //확인
+            var form = document.test;
+            form.submit();
+        
+        }else{   //취소
+            return;
+        }
+        }
+    </script>
+
 </head>
 <body>
-	<form role="form" method="get">
-	<!-- 등록 삭제 버튼 -->
-	<div class="table-cont">
-		<div align="right">
-			<button type="button"
-				onclick="location.href='${contextPath}/admin-product-register.do'"
-				class="btn-lg btn-dark">등록</button>
-			<input type="button" value="삭제" class="btn-lg btn-dark"
-				onclick="deleteValue();">
-		</div>
-	</div>
-
-		<div class="row">
-			<div class="col-md-12">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">상품 목록</h3>
+	<section>
+			<div class="content">
+				<div class="table-title">
+					<table>상품 _ 상품 상세
+					</table>
+				</div>
+				<div class="table-cont">
+					<div class="table-cont-btn">
+						<p class="table-search03">
+							<label class="cate" for="">카테고리</label> <label for="">대분류</label>
+							<select class="cate-sel" onchange="categoryChange(this)">
+								<option value="test">---선택---</option>
+								<option value="a">NEW</option>
+								<option value="b">OUTER</option>
+								<option value="c">TOP</option>
+								<option value="d">PANTS</option>
+								<option value="e">BAG</option>
+								<option value="f">ACC</option>
+								<option value="g">SALE</option>
+							</select> <label class="cate-low" for="">소분류</label> <select id="good">
+								<option>---선택---</option>
+							</select>
+							<script class="cate-low-table">
+                        function categoryChange(e) {
+                            var good_test = ["---선택---"];
+                            var good_a = ["---선택---","신상품"];
+                            var good_b = ["---선택---","재킷&점퍼","코트"];
+                            var good_c = ["---선택---","티셔츠","셔츠","후드&맨투맨","니트&가디건","조끼"];
+                            var good_d = ["---선택---","팬츠","쇼츠"];
+                            var good_e = ["---선택---","숄더백","백팩","크로스백","메신저백"];
+                            var good_f = ["---선택---","모자","반지&팔찌","선글라스","벨트"];
+                            var good_g = ["---선택---","Sale"];
+                            var target = document.getElementById("good");
+                        
+                            if(e.value == "a") var d = good_a;
+                            else if(e.value == "b") var d = good_b;
+                            else if(e.value == "c") var d = good_c;
+                            else if(e.value == "d") var d = good_d;
+                            else if(e.value == "e") var d = good_e;
+                            else if(e.value == "f") var d = good_f;
+                            else if(e.value == "g") var d = good_g;
+                            else if(e.value ==  "test") var d = good_test;
+                        
+                            target.options.length = 0;
+                        
+                            for (x in d) {
+                                var opt = document.createElement("option");
+                                opt.value = d[x];
+                                opt.innerHTML = d[x];
+                                target.appendChild(opt);
+                            }
+                        }
+                        </script>
+						</p>
+						<button type="button"
+							onclick="location.href='admin-regist.do'"
+							class="btn-text b01">등록</button>
+						<button type="button"
+							onclick="location.href='adminprodmodify.do'"
+							class="btn-text b02">수정</button>
+						<button type="button"
+							onclick="button_event01(); location.href='';"
+							class="btn-text b03">삭제</button>
 					</div>
 				</div>
-			</div>
-			<div class="col-xs-4">
-				<div id="example_filter" class="dataTables_filter">
-					<label id="listLabel"> <input type="search"
-						class="form-control input-sm" aria-controls="example" id="keyword"
-						value="${cri.keyword}">
-					</label>
-					<button type="button" class="btn btn-dark" id="searchBtn">검색</button>
+				<div class="content01">
+					<table class="content01-table">
+						<thead class="content-thead mgb10">
+							<tr class="content-thead-tr">
+								<th><input type="checkbox" value="selectall" name="box"
+									onclick="selectAll(this)" /></th>
+								<th class="cont-a01">No.</th>
+								<th>상품</th>
+								<th>상품명</th>
+								<th>등록상태</th>
+								<th>상품할인제공</th>
+								<th>상품가격</th>
+								<th>상품사이즈</th>
+								<th>상품색상</th>
+							</tr>
+						</thead>
+						<tbody class="content-tbody mgb10">
+							<tr class="content-tbody-tr01">
+								<td><input type="checkbox" name="box" /></td>
+								<td class="cont-a01">1</td>
+								<td><img src="img/1-1.JPG" alt="" width="90px"></td>
+								<td>상품명</td>
+								<td>판매가능</td>
+								<td>할인가능</td>
+								<td>50,000</td>
+								<td>S,L,LX,2XL</td>
+								<td>검정</td>
+							</tr>
+							<tr class="content-tbody-tr01">
+								<td><input type="checkbox" name="box" /></td>
+								<td class="cont-a01">1</td>
+								<td><img src="img/1-1.JPG" alt="" width="90px"></td>
+								<td>상품명</td>
+								<td>판매가능</td>
+								<td>할인가능</td>
+								<td>50,000</td>
+								<td>S,L,LX,2XL</td>
+								<td>옵션형태</td>
+							</tr>
+					</table>
+				</div>
+				<div class="paging">
+					<a href="#" class="bt"><<</a> <a href="#" class="bt"><</a> <a
+						href="#" class="num-on">1</a> <a href="#" class="num">2</a> <a
+						href="#" class="bt">></a> <a href="#" class="bt">>></a>
 				</div>
 			</div>
 		</div>
-		<table id="example" class="table table-striped table-bordered"
-			cellspacing="0" width="100%">
-			<thead>
-				<tr>
-					<th id="th1">상품번호</th>
-					<th id="th2">카테고리</th>
-					<th id="th4">상품명</th>
-					<th id="th3">내용</th>
-					<th id="th5">가격</th>
-					<th id="th4">개수</th>
-					<th id="th6">등록일</th>
-				</tr>
-			</thead>
-
-			<tbody>
-
-							<c:forEach items="${list}" var="pList">
-								<tr>
-									<td class="text_ct">${pList.num}</td>
-									<td class="text_ct"><a href="${contextPath}/admin-memberDetail${nList.product_num}.do">${pList.product_name}</a></td>
-									<td class="text_ct">${pList.product_detail}</td>
-									<td class="text_ct">${pList.product_price}</td>
-									<td class="text_ct">${pList.product_count}</td>
-									<td class="text_ct">${pList.product_date}</td>
-								</tr>
-							</c:forEach>
-						</table>
-		 <!-- 페이징 -->
-		 	<ul class="btn-group pagination">
-				<c:if test="${pageMaker.prev}">
-					<li><a href='<c:url value="/admin-product.do${pageMaker.makeSearch(pageMaker.startPage - 1)}"/>'><i class="fas fa-chevron-left"></i></a></li>
-				</c:if>
-
-				<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-					<li><a href='<c:url value="/admin-product.do${pageMaker.makeSearch(idx)}"/>'>${idx}</a></li>
-				</c:forEach>
-
-				<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					<li><a href='<c:url value="/admin-product.do${pageMaker.makeSearch(pageMaker.endPage + 1)}"/>'><i class="fas fa-chevron-right"></i></a></li>
-				</c:if>
-			</ul>
-
-	</form>
+	</section>
 </body>
 </html>

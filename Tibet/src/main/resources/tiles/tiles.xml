@@ -302,25 +302,25 @@
 	<definition name="/productListNew" extends="baseLayout">
 		<put-attribute name="title" value="상품목록" />
 		<put-attribute name="body"
-			value="/WEB-INF/views/product/new.jsp" />
+			value="/WEB-INF/views/product/top-1.jsp" />
 	</definition>
 
 	<definition name="/productListLowprice" extends="baseLayout">
 		<put-attribute name="title" value="상품목록" />
 		<put-attribute name="body"
-			value="/WEB-INF/views/product/new.jsp" />
+			value="/WEB-INF/views/product/top-1.jsp" />
 	</definition>
 
 	<definition name="/productListHighprice" extends="baseLayout">
 		<put-attribute name="title" value="상품목록" />
 		<put-attribute name="body"
-			value="/WEB-INF/views/product/new.jsp" />
+			value="/WEB-INF/views/product/top-1.jsp" />
 	</definition>
 
 	<definition name="/productListName" extends="baseLayout">
 		<put-attribute name="title" value="상품목록" />
 		<put-attribute name="body"
-			value="/WEB-INF/views/product/new.jsp" />
+			value="/WEB-INF/views/product/top-1.jsp" />
 	</definition>
 
 	<definition name="/productDetail" extends="baseLayout">

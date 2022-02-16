@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.OAuth;
+package com.myspring.tibet.OAuth;
 
 public interface SnsUrls {
 	static final String NAVER_ACCESS_TOKEN = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code";
