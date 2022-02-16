@@ -1,4 +1,4 @@
-package com.myspring.tibet.admin.member.controller;
+﻿package com.myspring.tibet.admin.member.controller;
 
 public interface AdminMemberController {
 

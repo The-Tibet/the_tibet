@@ -141,14 +141,9 @@ div{
 .box-btn{
     margin-top: 30px;
     text-align: left;
-    display: flex;
 }
 
-.box-btn-text {
-	margin-right: 0.45%;
-}
-
-.btn-text, #btn-modify, #btn-delete{
+.btn-text{
     font-size: 13px;
     padding: 8px 50px;
     background-color: white;
@@ -164,24 +159,6 @@ div{
 }
 
 .btn-text:hover{
-    background-color: black;
-    color: white;
-}
-
-#btn-modify:focus{
-    outline: none;
-}
-
-#btn-modify:hover{
-    background-color: black;
-    color: white;
-}
-
-#btn-delete:focus{
-    outline: none;
-}
-
-#btn-delete:hover{
     background-color: black;
     color: white;
 }

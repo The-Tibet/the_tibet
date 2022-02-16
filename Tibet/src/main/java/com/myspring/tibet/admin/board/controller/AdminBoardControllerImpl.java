@@ -1,11 +1,12 @@
-package com.myspring.tibet.admin.board.controller;
+﻿package com.myspring.tibet.admin.board.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,8 +20,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.tibet.admin.board.service.AdminBoardSerivce;
 import com.myspring.tibet.board.vo.NoticeVO;
-import com.myspring.tibet.utils.Criteria;
 import com.myspring.tibet.utils.PageMaker;
+import com.myspring.tibet.utils.SearchCriteria;
 
 @Controller("adminBoardController")
 public class AdminBoardControllerImpl implements AdminBoardController {
@@ -28,17 +29,20 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 	private AdminBoardSerivce adminBoardSerivce;
 	@Autowired
 	private NoticeVO noticeVO;
-
-	// 공지사항 페이지
-	@RequestMapping(value = "/admin-notice.do")
-	public ModelAndView openNoticeList(Criteria cri, HttpServletRequest request) throws Exception {
+	
+	private static final Logger logger = LoggerFactory.getLogger(AdminBoardController.class);
+	
+	// 공지사항 페이징+검색 목록
+	@Override
+	@RequestMapping(value = "/admin-notice.do", method = RequestMethod.GET)
+	public ModelAndView openNoticeList(SearchCriteria scri, HttpServletRequest request) throws Exception {
+		logger.info("admin-notice.do");
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(adminBoardSerivce.countNoticeListTotal());
-
-		List<Map<String, Object>> list = adminBoardSerivce.selectNoticeList(cri);
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminBoardSerivce.adminopenNoticeList(scri));
+		List<NoticeVO> list = adminBoardSerivce.selectAllNoticesList(scri);
 		mav.addObject("list", list);
 		mav.addObject("pageMaker", pageMaker);
 		return mav;
@@ -65,7 +69,7 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		return "redirect:/admin-notice.do";
 	}
 	
-  	// 공지사항 글쓰기
+	// 공지사항 글쓰기
 	@Override
 	@RequestMapping(value = "/admin-noticeWrt.do", method = RequestMethod.POST)
 	public ResponseEntity insertNoticeWritePage(@ModelAttribute("noticeVO") NoticeVO _noticeVO,
@@ -102,13 +106,13 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 			HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
+		logger.info("update POST ..... {}", noticeVO);
 		String message = null;
 		ResponseEntity resEntity = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
-		
 		try {
-			adminBoardSerivce.insertNoticeWritePage(_noticeVO);
+			adminBoardSerivce.modifynotice(_noticeVO);
 			message = "<script>";
 			message += " alert('글 수정이 완료되었습니다. 원래 페이지로 돌아갑니다.');";
 			message += " location.href='" + request.getContextPath() + "/admin-notice.do';";
@@ -123,7 +127,7 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		}
 		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
-	}
+	}	 
 
 	// 공지사항 수정 페이지
 	@Override
@@ -141,7 +145,7 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		mav.setViewName("/admin-noticeWrite");
 		return mav;
 	}
-
+	// 공지사항 상세 페이지
 	@Override
 	@RequestMapping(value = "/admin-noticeDetail{notice_num}.do", method = RequestMethod.GET)
 	public ModelAndView adminnoticeDetail(@PathVariable("notice_num") Integer notice_num, ModelAndView mav)

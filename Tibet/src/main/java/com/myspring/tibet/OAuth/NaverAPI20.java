@@ -1,4 +1,4 @@
-package com.myspring.tibet.OAuth;
+﻿package com.myspring.tibet.OAuth;
 
 import com.github.scribejava.core.builder.api.DefaultApi20;
 

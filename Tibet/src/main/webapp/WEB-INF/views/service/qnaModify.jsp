@@ -119,7 +119,6 @@ request.setCharacterEncoding("UTF-8");
 					<%
 					session.getAttribute("memberInfo");
 					%>
-					
  					<div class="qna-ask-form">
 						<label>공개여부</label> 
 						<input type="radio" name="qna_lock"
