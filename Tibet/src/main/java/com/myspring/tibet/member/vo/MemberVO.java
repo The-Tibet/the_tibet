@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.member.vo;
+package com.myspring.tibet.member.vo;
 
 import java.util.Date;
 

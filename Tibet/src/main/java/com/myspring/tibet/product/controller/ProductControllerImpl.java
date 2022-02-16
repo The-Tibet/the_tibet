@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.product.controller;
+package com.myspring.tibet.product.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,15 +9,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.tibet.board.service.BoardService;
 import com.myspring.tibet.product.service.ProductService;
+import com.myspring.tibet.product.vo.ProductVO;
 
 @Controller("productController")
 public class ProductControllerImpl implements ProductController{	
 	@Autowired
 	private ProductService productService;	
 	@Autowired
+	private ProductVO productVO;
+	@Autowired
 	private BoardService boardService;
 	
-	// 현성
 //	@Override
 //	@RequestMapping(value="/productlistName{main_category_num}.do" ,method = RequestMethod.GET)
 //	public ModelAndView productlistName(@PathVariable("main_category_num") int main_category_num,ModelAndView mav) throws Exception {
@@ -63,6 +65,8 @@ public class ProductControllerImpl implements ProductController{
 	public ModelAndView detail(@PathVariable("product_num") String product_num, ModelAndView mav) throws Exception{
 		mav.setViewName("/productDetail");
 		mav.addObject("vo", productService.productDetail(product_num));
+		mav.addObject("color", productService.productColor(product_num));
+		mav.addObject("size", productService.productSize(product_num));
 		mav.addObject("prodQnasList", boardService.listProdQnas(product_num));
 		mav.addObject("prodReviewsList", boardService.listProdReviews(product_num));
 		return mav;
