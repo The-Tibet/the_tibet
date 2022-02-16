@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.admin.product.dao;
+package com.myspring.tibet.admin.product.dao;
 
 import java.util.List;
 

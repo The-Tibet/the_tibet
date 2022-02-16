@@ -112,7 +112,8 @@ request.setCharacterEncoding("UTF-8");
 			<table class="user-look">
 				<thead class="user-look-head">
 					<tr>
-						<th scope="col"><input id="allCheck" type="checkbox" name="allCheck" /></th>
+						<th scope="col"><input id="allCheck" type="checkbox"
+							name="allCheck" /></th>
 						<th class="head-num">No.</th>
 						<th scope="col">ID</th>
 						<th scope="col">Name</th>

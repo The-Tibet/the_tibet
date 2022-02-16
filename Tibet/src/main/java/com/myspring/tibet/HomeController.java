@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet;
+package com.myspring.tibet;
 
 import org.springframework.stereotype.Controller;
 

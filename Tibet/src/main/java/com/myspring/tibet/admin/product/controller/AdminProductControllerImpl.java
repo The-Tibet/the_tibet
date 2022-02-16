@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.admin.product.controller;
+package com.myspring.tibet.admin.product.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

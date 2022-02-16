@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.admin.product.service;
+package com.myspring.tibet.admin.product.service;
 
 import java.util.List;
 
@@ -13,13 +13,13 @@ public class AdminProductServiceImpl implements AdminProductService{
 	@Autowired
 	private AdminProductDAO adminProductDAO;
 	
-	// 상품 상세
+	// 상품 목록
 	@Override
 	public List<ProductVO> productListName(int main_category_num) throws Exception {
 		return adminProductDAO.productlistName(main_category_num);
 	}
 	
-	// 상품 목록
+	// 상품 상세
 	@Override
 	public ProductVO productDetail(String product_num) throws Exception {
 		return adminProductDAO.productDetail(product_num);

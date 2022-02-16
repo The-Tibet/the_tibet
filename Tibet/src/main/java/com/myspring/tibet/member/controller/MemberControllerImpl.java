@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.member.controller;
+package com.myspring.tibet.member.controller;
 
 import java.util.Map;
 
@@ -64,7 +64,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		// 2. access_token을 이용해서 사용자 profile 정보 가져오기
 		SNSLogin snsLogin = new SNSLogin(sns);
 		
-		MemberVO snsUser = snsLogin.getUserProfile(code); // 1,2踰� �룞�떆
+		MemberVO snsUser = snsLogin.getUserProfile(code); // 1,2번 동시
 		System.out.println("Profile>>" + snsUser);
 		
 		// 3. DB 해당 유저가 존재하는 체크 (googleid, naverid 컬럼 추가)

@@ -22,69 +22,43 @@ request.setCharacterEncoding("UTF-8");
 </head>
 <body>
 	<section>
-		<div class="enter-table">
-			<div class="enter-table-not mgb15">
-				<div class="enter-table-not-tit">
-					<label class="enter-not01">제목</label> <label class="enter-not02"
-						id="notice01">${notice.notice_title}</label>
-				</div>
+    <div class="enter-table">
+        <div class="enter-table-not mgb15">
+            <div class="enter-table-not-tit">
+                <label class="enter-not01">제목</label>
+                <label class="enter-not02" id="notice01">${notice.notice_title}</label>
+            </div>
+            
+            <div class="enter-table-not-name">
+                <label class="enter-not01">작성자</label>
+                <label class="enter-not02">${notice.user_id}</label>
+            </div>
+            <div class="enter-table-not-date">
+                <label class="enter-not01">작성일</label>
+                <label class="enter-not02">
+					<fmt:formatDate value="${notice.notice_date}" pattern="yyyy-MM-dd" /></label>
+            </div>
 
-				<div class="enter-table-not-name">
-					<label class="enter-not01">작성자</label> <label class="enter-not02">${notice.user_id}</label>
-				</div>
-				<div class="enter-table-not-date">
-					<label class="enter-not01">작성일</label> <label class="enter-not02">
-						<fmt:formatDate value="${notice.notice_date}" pattern="yyyy-MM-dd" />
-					</label>
-				</div>
-
-				<div class="enter-table-content">${notice.notice_content}</div>
-				<p>
-					<br>
-				</p>
-				<div class="enter-table-file">
-					<c:choose>
-						<c:when
-							test="${notice.notice_img1 eq null || notice.notice_img1 eq ''}"></c:when>
-						<c:otherwise>
-							<div>
-								<img alt="#" src="resources/img/${notice_notice_img1}">
-							</div>
-
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${notice_notice_img2 eq null || notice_notice_img2 eq ''}"></c:when>
-						<c:otherwise>
-							<div>
-								<img alt="#" src="resources/img/${notice_notice_img2}">
-							</div>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${notice_notice_img3 eq null || notice_notice_img3 eq ''}"></c:when>
-						<c:otherwise>
-							<div>
-								<img alt="#" src="resources/img/${notice_notice_img3}">
-							</div>
-						</c:otherwise>
-					</c:choose>
+            <div class="enter-table-content">
+                ${notice.notice_content}
+            </div>
+            <p><br></p>
+            <div class="enter-table-file">
+                <img alt="#" src="resources/${notice.notice_img}">
+            </div>
+        </div>
+	<div class="box-btn">
+				<div class="box-btn-text">
+					<button type="button"
+						onclick="location.href='${contextPath}/admin-notice.do'" class="btn-text">목록
+					</button>
 				</div>
 			</div>
-		</div>
-		<div class="box-btn">
-			<div class="box-btn-text">
-				<button type="button"
-					onclick="location.href='${contextPath}/admin-notice.do'"
-					class="btn-text">목록</button>
-			</div>
-		</div>
-		<input type="button" value="수정"
-			onclick="location.href='${contextPath}/noticeModifyForm${notice.notice_num}.do'">
-		<input type="button" value="삭제" onclick="del(${notice.notice_num})">
-		</div>
+			<input type="button" value="수정" onclick="location.href='${contextPath}/noticeModifyForm${notice.notice_num}.do'">
+			<input type="button" value="삭제" onclick="del(${notice.notice_num})">
+            </div>
 	</section>
-	<script>
+		<script>
 	function del(notice_num) {
 		var chk = confirm("정말 삭제하시겠습니까?");
 		if (chk) {
@@ -92,5 +66,5 @@ request.setCharacterEncoding("UTF-8");
 		}
 	}	
 </script>
-</body>
+		</body>
 </html>

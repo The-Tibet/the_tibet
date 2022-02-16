@@ -1,6 +1,7 @@
-﻿package com.myspring.tibet.admin.board.service;
+package com.myspring.tibet.admin.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.myspring.tibet.admin.board.dao.AdminBoardDAO;
 import com.myspring.tibet.board.vo.NoticeVO;
-import com.myspring.tibet.utils.SearchCriteria;
+import com.myspring.tibet.utils.Criteria;
 
 @Service("adminBoardService")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -30,8 +31,8 @@ public class AdminBoardServiceImpl implements AdminBoardSerivce {
 	
 	// 공지사항 수정
 	@Override
-	public int modifynotice(NoticeVO noticeVO) {
-		return adminBoardDAO.modifynotice(noticeVO);
+	public Integer noticeModify(Integer notice_num) throws Exception {
+		return adminBoardDAO.modifynotice(notice_num);
 	}
 	
 	// 공지사항 선택삭제
@@ -42,13 +43,13 @@ public class AdminBoardServiceImpl implements AdminBoardSerivce {
 	
 	// 공지사항 페이징
 	@Override
-    public  List<NoticeVO> selectAllNoticesList(SearchCriteria scri) throws Exception {
-	    return adminBoardDAO.selectAllNoticesList(scri);
+	public List<Map<String, Object>> selectNoticeList(Criteria cri) {
+	    return adminBoardDAO.selectNoticeList(cri);
 	}
 	
 	// 공지사항 목록
 	@Override
-	public int adminopenNoticeList(SearchCriteria scri) throws Exception{
-	    return adminBoardDAO.adminopenNoticeList(scri);
+	public int countNoticeListTotal() {
+	    return adminBoardDAO.countNoticeList();
 	}
 }

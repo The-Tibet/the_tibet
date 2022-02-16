@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.OAuth;
+package com.myspring.tibet.OAuth;
 
 import java.util.Iterator;
 

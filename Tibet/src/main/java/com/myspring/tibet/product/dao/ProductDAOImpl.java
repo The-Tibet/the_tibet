@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.product.dao;
+package com.myspring.tibet.product.dao;
 
 import java.util.List;
 
@@ -32,7 +32,6 @@ public class ProductDAOImpl implements ProductDAO{
 		return sqlSession.selectList(namespace + ".productListLowprice");
 	}
 	
-	// 현성
 //	@Override
 //	public List<ProductVO> productlistName(int main_category_num) throws Exception {
 //		return sqlSession.selectList(namespace + ".productListName", main_category_num);
@@ -46,6 +45,16 @@ public class ProductDAOImpl implements ProductDAO{
 	@Override
 	public ProductVO productDetail(String product_num) {
 		return sqlSession.selectOne(namespace + ".productDetail", product_num);
+	}
+	
+	@Override
+	public List<ProductVO> productColor(String product_num) {
+		return sqlSession.selectList(namespace + ".productColor", product_num);
+	}
+	
+	@Override
+	public List<ProductVO> productSize(String product_num) {
+		return sqlSession.selectList(namespace + ".productSize", product_num);
 	}
 	
 	@Override

@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.member.dao;
+package com.myspring.tibet.member.dao;
 
 import java.util.Map;
 
@@ -14,7 +14,7 @@ import com.myspring.tibet.member.vo.MemberVO;
 public class MemberDAOImpl implements MemberDAO{
 	@Autowired
 	private SqlSession sqlSession;	
-	// 실험용 코드
+	// ����� �ڵ�
 	private static final String NS = "mapper.member";
 	private static final String GET_BY_SNS_NAVER = NS + ".getBySnsNaver";
 	private static final String GET_BY_SNS_GOOGLE = NS + ".getBySnsGoogle";

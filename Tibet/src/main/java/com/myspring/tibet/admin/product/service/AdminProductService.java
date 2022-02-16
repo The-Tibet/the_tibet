@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.admin.product.service;
+package com.myspring.tibet.admin.product.service;
 
 import java.util.List;
 
