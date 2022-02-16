@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.admin.board">
+
+	<resultMap id="noticeResult" type="noticeVO">
+		<result property="notice_num" column="notice_num" />
+		<result property="notice_title" column="notice_title" />
+		<result property="notice_content" column="notice_content" />
+		<result property="notice_date" column="notice_date" />
+		<result property="notice_img" column="notice_img" />
+		<result property="user_id" column="user_id" />
+	</resultMap>
+
+	<!-- 공지사항 페이징 -->
+	<select id="selectAllNoticesList" resultType="hashmap" parameterType="hashmap">
+    <![CDATA[
+     	SELECT cast(@num:=@num+1 AS signed integer) AS num,notice_num,notice_title,notice_content,user_id,cast(notice_date AS DATE) as notice_date
+		FROM (SELECT @num:=(#{pageStart}/#{perPageNum})*(${perPageNum})) AS n, notice
+		ORDER BY notice_date DESC
+		LIMIT #{pageStart}, #{perPageNum}
+    ]]>
+	</select>
+	
+	<!-- 공지사항 목록 -->
+	<select id="countNoticeList" resultType="Integer">
+    <![CDATA[
+        SELECT
+            count(*)
+        FROM
+            notice
+    ]]>
+	</select>
+	
+	<!-- 공지사항 등록 -->
+	<insert id="insertNoticeWritePage" parameterType="noticeVO">
+	<![CDATA[
+     	insert into notice(notice_num, notice_title, notice_content, notice_img, user_id)
+     	values(#{notice_num}, #{notice_title}, #{notice_content}, #{notice_img}, #{user_id})
+    ]]>
+	</insert>
+	
+	<!-- 공지사항 상세 -->
+	<select id="adminnoticeDetail" resultType="com.myspring.tibet.board.vo.NoticeVO">
+		select notice_num, notice_title, notice_content, cast(notice_date AS DATE)
+		as notice_date, notice_img, user_id from notice where
+		notice_num=#{notice_num}
+	</select>
+	
+	<!-- 공지사항 수정 -->
+	<update id="modifynotice" parameterType="noticeVO">
+	<![CDATA[
+		update notice set notice_title=#{notice_title},notice_img=#{notice_img},notice_date=#{notice_date} where notice_num=#{notice_num}
+	]]>
+	</update>
+	
+	<!-- 공지사항 삭제 -->
+	<delete id="noticedelete" parameterType="Integer">
+	<![CDATA[
+		delete from notice where notice_num=#{notice_num}
+	]]>
+	</delete>
+	
+</mapper>
