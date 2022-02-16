@@ -52,24 +52,30 @@
     ]]>
 	</insert>
 	<!-- 공지사항 상세 -->
-	<select id="adminnoticeDetail"
-		resultType="com.myspring.tibet.board.vo.NoticeVO">
-		select notice_num, notice_title, notice_content,
-		cast(notice_date AS DATE)
-		as notice_date, notice_img1, notice_img2,
-		notice_img3, user_id from notice where
-		notice_num=#{notice_num}
+	<select id="adminnoticeDetail" resultType="com.myspring.tibet.board.vo.NoticeVO">
+		select notice_num, 
+			notice_title, 
+			notice_content,
+		cast(notice_date AS DATE) as 
+			notice_date, 
+			notice_img1, 
+			notice_img2,
+			notice_img3, 
+			user_id 
+		from notice 
+		where notice_num=#{notice_num}
 	</select>
 
 	<!-- 공지사항 수정 -->
-	<update id="modifynotice"
-		parameterType="com.myspring.tibet.board.vo.NoticeVO">
+	<update id="modifynotice" parameterType="com.myspring.tibet.board.vo.NoticeVO">
 	<![CDATA[
-		update tibetdb.notice set notice_title=#{notice_title},
-		notice_img1=#{notice_img1},
-		notice_img2=#{notice_img2},
-		notice_img3=#{notice_img3},
-		notice_date=#{notice_date} 
+		update tibetdb.notice set 
+			notice_title=#{notice_title},
+			notice_title=#{notice_content},
+			notice_img1=#{notice_img1},
+			notice_img2=#{notice_img2},
+			notice_img3=#{notice_img3},
+			notice_date=#{notice_date} 
 		where notice_num=#{notice_num}
 	]]>
 	</update>

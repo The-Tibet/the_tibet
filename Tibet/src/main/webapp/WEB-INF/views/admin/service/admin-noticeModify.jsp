@@ -17,8 +17,10 @@ request.setCharacterEncoding("UTF-8");
 <link rel="stylesheet" href="resources/css/admin/admin-layout.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <link rel="stylesheet" href="resources/fontawesome/css/all.css">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="resources/summernote/summernote-lite.js"></script>
@@ -27,65 +29,71 @@ request.setCharacterEncoding("UTF-8");
 
 </head>
 <body>
-<div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <h2 class="text-center">게시글 작성</h2>
-	<form action="${contextPath}/noticeModify.do" id="noticeMod" method="post">
-          <table class="table table-striped">
-            <tr>
-                <td>제목</td>
-                <td><input type="text"  class="form-control" name="notice_title"></td>
-            </tr>
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<h2 class="text-center">게시글 작성</h2>
+			<form id="noticeMod" action="${contextPath}/noticeModify.do" method="post">
+				<table class="table table-striped">
+					 <tr>
+						<td>제목</td>
+						<td><input type="text" class="form-control" name="notice_title" value="${notice_title}"/>
+					</td>
+					</tr>
 					<%
 					session.getAttribute("memberInfo");
 					%>
-				<input type="hidden" id="관리자" name="user_id" value="${memberInfo.user_id}">
-            <tr>
-                <td>글내용</td>
-                <td><textarea id="summernote" rows="10" cols="50" name="notice_content" class="form-control"></textarea></td>
-            </tr>
-
-            <tr>
-                <td colspan="2"  class="text-center">
-                    <input type="submit" value="글쓰기" class="btn btn-success"
-              	onclick="javascript:submit_check('${contextPath}/notice.do')">
-                    <input type="reset" value="취소" class="btn btn-warning"
-                    	onclick="javascript:delete_check()">
-                </td>
-            </tr>
-          </table>
-					<div class="form-group form_file">
-						<div>
-							<label>이미지 첨부</label> 
-							<input class="form-control form_point_color01" type="file" name="notice_img1">
-						</div>
-						<div>
-							<label>이미지 첨부</label> 
-							<input class="form-control form_point_color01" type="file" name="notice_img2">
-						</div>
-						<div>
-							<label>이미지 첨부</label> 
-							<input class="form-control form_point_color01" type="file" name="notice_img3">
-						</div>
-						</div>
-        </form>
-        </div>
-        </div>
+					<input type="hidden" id="관리자" name="user_id" value="${memberInfo.user_id}">
+					<tr>
+						<td>글내용</td>
+						<td><textarea id="summernote" rows="10" cols="50" name="notice_content"><c:out value="${notice.notice_content}" /></textarea></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="text-center"><input type="submit"
+							value="수정" class="btn btn-success"
+							onclick="javascript:submit_check('${contextPath}/notice.do')">
+							<input type="reset" value="취소" class="btn btn-warning"
+							onclick="javascript:delete_check()"></td>
+					</tr>
+				</table>
+				<div class="form-group form_file">
+					<div>
+						<label>이미지 첨부</label> <input
+							class="form-control form_point_color01" type="file"
+							name="notice_img1">
+					</div>
+					<div>
+						<label>이미지 첨부</label> <input
+							class="form-control form_point_color01" type="file"
+							name="notice_img2">
+					</div>
+					<div>
+						<label>이미지 첨부</label> <input
+							class="form-control form_point_color01" type="file"
+							name="notice_img3">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 	<script>
-	   $('#summernote').summernote({
-			height: 450,
-			lang: "ko-KR",
-            toolbar: [
-                ['fontname', ['fontname']],
-                ['fontsize', ['fontsize']],
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['paragraph']],
-                ['insert', ['link', 'picture']],
-                ['view', []]
-            ]
-		});
+		$('#summernote')
+				.summernote(
+						{
+							height : 450,
+							lang : "ko-KR",
+							toolbar : [
+									[ 'fontname', [ 'fontname' ] ],
+									[ 'fontsize', [ 'fontsize' ] ],
+									[
+											'style',
+											[ 'bold', 'italic', 'underline',
+													'clear' ] ],
+									[ 'color', [ 'color' ] ],
+									[ 'para', [ 'paragraph' ] ],
+									[ 'insert', [ 'link', 'picture' ] ],
+									[ 'view', [] ] ]
+						});
 		function submit_check() {
 			var answer;
 			answer = confirm("수정하시겠습니까?");

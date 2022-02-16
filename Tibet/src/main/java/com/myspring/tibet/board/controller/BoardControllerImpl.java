@@ -149,7 +149,7 @@ public class BoardControllerImpl implements BoardController {
 		} catch (Exception e) {
 			message = "<script>";
 			message += " alert('작업 중 오류가 발생했습니다. 다시 시도해 주세요.');";
-			message += " location.href='" + request.getContextPath() + "/qnaWrite.do';";
+			message += " location.href='" + request.getContextPath() + "/noticeModify.do';";
 			message += " </script>";
 			e.printStackTrace();
 		}

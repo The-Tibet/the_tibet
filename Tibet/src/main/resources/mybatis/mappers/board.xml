@@ -127,7 +127,14 @@
 
 <update id="modifyQna" parameterType="com.myspring.tibet.board.vo.QnaVO">
 	<![CDATA[
-		update tibetdb.qna set qna_content=#{qna_content}, qna_lock=#{qna_lock},qna_pw=#{qna_pw},qna_img1=#{qna_img1},qna_img2=#{qna_img2},qna_img3=#{qna_img3},qna_date=NOW() where qna_num=#{qna_num}
+		update tibetdb.
+			qna set qna_content=#{qna_content}, 
+			qna_lock=#{qna_lock},
+			qna_pw=#{qna_pw},
+			qna_img1=#{qna_img1}
+			,qna_img2=#{qna_img2},
+			qna_img3=#{qna_img3},
+		qna_date=NOW() where qna_num=#{qna_num}
 	]]>
 </update>
 

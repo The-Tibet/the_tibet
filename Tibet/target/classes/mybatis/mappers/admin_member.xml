@@ -21,7 +21,7 @@
 		<result property="user_point" column="user_point" />
 		<result property="user_mailSend" column="user_mailSend" />
 	</resultMap>
-
+	
 	<!--회원 목록 페이징 -->
 	<select id="selectAllmemberList" resultType="hashmap" parameterType="hashmap">
      	SELECT cast(@num:=@num+1 AS signed integer) AS num, 
@@ -38,28 +38,33 @@
 		LIMIT #{pageStart}, #{perPageNum}
 	</select>
 	
-	<!--회원 강제탈퇴 -->
-	<delete id="memberDelete" parameterType="String">
-		delete user where user_id=#{user_id}
-	</delete>
+		
+	<select id="modifyMemberForm" resultType="memberVO"> 
+		SELECT * from user WHERE user_id=#{user_id}
+	</select>
 	
 	<!--회원 목록-->
 	<select id="countMemberList" resultType="Integer">
 		select count(*) from user
 	</select>
-	<!--회원 상세 -->
-	<select id="memberDetail"
-		resultType="com.myspring.tibet.board.vo.NoticeVO">
-	     		user_id, 
-     		user_name, 
-     		user_birth, 
-     		user_gender, 
-     		user_membership, 
-     		user_phone, 
-     		user_point, 
-     		user_joinDate
-		notice_num=#{notice_num}
+	<!--관리자 회원수정 -->
+	<update id="adminMemberUpdate" parameterType="memberVO">
+		update
+			user
+		set
+	     	user_id = #{user_id},
+     		user_name = #{user_name},
+     		user_birth = #{user_birth},
+     		user_gender = #{user_gender},
+     		user_membership = #{user_membership},
+     		user_phone = #{user_phone},
+     		user_point = #{user_point},
+     		user_joinDate = #{user_joinDate},
+		where user_id = #{user_id}
+	</update>
+	<!-- 회원 수정폼 -->
+		<select id="adminMemberUpdateForm" resultType="memberVO"> 
+		SELECT * from user WHERE user_id=#{user_id}
 	</select>
 	
 </mapper>
-

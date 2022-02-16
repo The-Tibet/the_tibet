@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.myspring.tibet.board.dao.BoardDAOImpl;
+import com.myspring.tibet.member.vo.MemberVO;
 import com.myspring.tibet.utils.Criteria;
 
 @Repository("adminMemberDAO")
@@ -47,4 +48,17 @@ public class AdminMemberDAOImpl implements AdminMemberDAO {
 	public List<Map<String, Object>> selectAllmemberList(Criteria cri) {
 		return (List<Map<String,Object>>)selectList("mapper.admin.member.selectAllmemberList", cri);
 	}
-}
+
+
+		@Override
+		public MemberVO adminMemberUpdateForm(String user_id) {
+			return sqlSession.selectOne("mapper.admin.member.adminMemberUpdateForm", user_id);
+		}
+		
+		@Override
+		public int adminMemberUpdate(MemberVO vo) throws Exception {	
+			return sqlSession.update("mapper.admin.member.adminMemberUpdate", vo);		
+		}
+
+		}
+

@@ -13,7 +13,7 @@ public interface AdminBoardDAO {
 	// 공지사항 상세
 	public NoticeVO adminnoticeDetail(Integer notice_num);
 	// 공지사항 수정
-	public int modifynotice(NoticeVO noticeVO);
+	public int modifynotice(NoticeVO NoticeVO);
 	// 공지사항 삭제
     public void noticedelete(String notice_num); 
 	// 공지사항 페이징

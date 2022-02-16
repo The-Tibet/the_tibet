@@ -18,5 +18,7 @@ public interface AdminBoardSerivce {
 	 public int adminopenNoticeList(SearchCriteria scri) throws Exception; 
 	// 공지사항 페이징
 	public List<NoticeVO> selectAllNoticesList(SearchCriteria scri) throws Exception;
+
+	
 }
 

@@ -71,6 +71,10 @@ request.setCharacterEncoding("UTF-8");
 									<td class="text_ct">${mList.user_phone}</td>
 									<td class="text_ct">${mList.user_point}</td>
 									<td class="text_ct">${mList.user_joinDate}</td>
+								    <td><a href="memDelete.do?num=${mList.num}">삭제</a></td>
+         				            <td><a href="memUpdateForm.do?num=${mList.num}">수정</a></td>
+
+
 								</tr>
 							</c:forEach>
 						</table>

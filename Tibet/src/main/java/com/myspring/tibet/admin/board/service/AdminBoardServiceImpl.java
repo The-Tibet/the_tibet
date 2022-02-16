@@ -48,4 +48,8 @@ public class AdminBoardServiceImpl implements AdminBoardSerivce {
 	public int adminopenNoticeList(SearchCriteria scri) throws Exception{
 	    return adminBoardDAO.adminopenNoticeList(scri);
 	}
-}
+
+		
+	}
+
+

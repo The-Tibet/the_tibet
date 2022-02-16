@@ -106,7 +106,6 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 			HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		logger.info("update POST ..... {}", noticeVO);
 		String message = null;
 		ResponseEntity resEntity = null;
 		HttpHeaders responseHeaders = new HttpHeaders();

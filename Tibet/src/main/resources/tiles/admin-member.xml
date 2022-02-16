@@ -8,5 +8,10 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/admin/member/admin-memberlist.jsp" />
 	</definition>
-</tiles-definitions>
+			<definition name="adminMemberUpdateForm" extends="adminlayout">
+		<put-attribute name="title" value="공지사항 수정" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/admin/member/admin-modify.jsp" />
+	</definition>
 	
+</tiles-definitions>
