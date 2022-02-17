@@ -71,6 +71,10 @@ request.setCharacterEncoding("UTF-8");
 									<td class="text_ct">${mList.user_phone}</td>
 									<td class="text_ct">${mList.user_point}</td>
 									<td class="text_ct">${mList.user_joinDate}</td>
+		<td>
+				<input type="button" value="수정" class="btn btn-dark btn-lg"
+		onclick="location.href='${contextPath}/adminmemModifyForm${user.user_id}.do'">
+	<input type="button" value="삭제" class="btn btn-dark btn-lg" onclick="del(${user.user_id})">	</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -79,5 +83,13 @@ request.setCharacterEncoding("UTF-8");
 				</div>
 		<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
 		<script src="js/datatables-simple-demo.js"></script>
+			<script>
+	function del(user_id) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href='memberDelete?user_id='+user_id;
+		}
+	}	
+</script>
 </body>
 </html>

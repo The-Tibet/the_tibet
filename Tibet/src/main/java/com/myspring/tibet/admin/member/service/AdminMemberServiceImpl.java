@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myspring.tibet.admin.member.dao.AdminMemberDAO;
+import com.myspring.tibet.member.vo.MemberVO;
 import com.myspring.tibet.utils.Criteria;
 
 @Service("adminMemberService")
@@ -31,4 +32,17 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	public void memberDelete(String user_id) {
 		adminMemberDAO.memberDelete(user_id);
 	}
+
+	// 공지사항 수정화면
+	@Override 
+	public MemberVO adminmodifyMemberForm(String user_id) throws Exception {
+		return adminMemberDAO.adminmodifyMemberForm(user_id); 
+	}
+	
+	// 공지사항 수정기능
+	@Override
+	public int adminmodifyMember(MemberVO vo) throws Exception {
+		return adminMemberDAO.adminmodifyMember(vo);
+	}
 }
+

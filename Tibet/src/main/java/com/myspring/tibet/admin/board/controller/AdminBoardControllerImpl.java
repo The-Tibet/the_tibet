@@ -130,7 +130,6 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
 		return resEntity;
 	}	 
-
 	// 공지사항 수정 페이지
 	@Override
 	@RequestMapping(value = "/noticeModifyForm{notice_num}.do", method = RequestMethod.GET)
@@ -139,7 +138,6 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 		mav.addObject("notice", adminBoardSerivce.adminnoticeDetail(notice_num));
 		return mav;
 	}
-
 	// 공지사항 글쓰기 페이지
 	@Override
 	@RequestMapping(value = "/noticeWrite.do", method = RequestMethod.GET)

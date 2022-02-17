@@ -39,27 +39,41 @@
 	</select>
 	
 	<!--회원 강제탈퇴 -->
-	<delete id="memberDelete" parameterType="String">
-		delete user where user_id=#{user_id}
+	<delete id="memberDelete" parameterType="Integer">
+		delete from user where user_id=#{user_id}
 	</delete>
 	
 	<!--회원 목록-->
 	<select id="countMemberList" resultType="Integer">
 		select count(*) from user
 	</select>
-	
-	<!--회원 상세 -->
-	<select id="memberDetail" resultType="com.myspring.tibet.board.vo.NoticeVO">
-	     	user_id, 
-     		user_name, 
-     		user_birth, 
-     		user_gender, 
-     		user_membership, 
-     		user_phone, 
-     		user_point, 
-     		user_joinDate
-		notice_num=#{notice_num}
+
+	<!-- 회원 수정화면 -->
+		<select id="adminmodifyMemberForm" resultType="memberVO"> 
+		select user_name, 
+			user_birth, 
+			user_membership,
+			user_phone, 
+			user_gender, 
+			user_point,
+			user_id 
+		from user 
+		where user_id=#{user_id}
 	</select>
+	
+	<!-- 회원 수정기능 -->
+	<update id="adminmodifyMember" parameterType="memberVO">
+		<![CDATA[
+	  update user
+	     set user_name=#{user_name}, 
+			 user_birth=#{user_birth},
+			 user_membership=#{user_membership}, 
+			 user_phone=#{user_phone}, 
+			 user_gender=#{user_gender}, 
+			 user_point=#{user_point}, 
+	   where user_id=#{user_id}
+		]]>
+	</update>
 	
 </mapper>
 
