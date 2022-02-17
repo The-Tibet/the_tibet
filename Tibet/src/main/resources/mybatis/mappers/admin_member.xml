@@ -47,10 +47,10 @@
 	<select id="countMemberList" resultType="Integer">
 		select count(*) from user
 	</select>
+	
 	<!--회원 상세 -->
-	<select id="memberDetail"
-		resultType="com.myspring.tibet.board.vo.NoticeVO">
-	     		user_id, 
+	<select id="memberDetail" resultType="com.myspring.tibet.board.vo.NoticeVO">
+	     	user_id, 
      		user_name, 
      		user_birth, 
      		user_gender, 

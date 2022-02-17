@@ -1,15 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8" isELIgnored="false"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
-
-
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
 <html>
@@ -50,9 +43,9 @@ section .sort {
 	justify-content: flex-end;
 }
 
-section .sort p {
-	width: 1px;
-	margin: 0 0 1% 0;
+section .sort p {	
+	width: 1px;	
+	margin: 0 0 1% 0;	
 }
 
 .hr {
@@ -127,6 +120,10 @@ section .SelectMenu {
 	padding: 0 1%;
 }
 
+.SubMenu li:hover {
+	text-decoration: underline #999;
+}
+
 .items {
 	width: 20%;
 	height: 410px;
@@ -170,6 +167,7 @@ section .SelectMenu {
    text-decoration: line-through;
    
 }
+
 .items .d {
    color: #ff5100;
    font-weight: bold;
@@ -180,6 +178,10 @@ section .SelectMenu {
 	clear: both;
 }
 
+.UnSelectMenu-chk {
+	padding: 0 1%;
+}
+
 .UnSelectMenu {
 	border-left: 2px solid #e6e6e6;
 	padding: 0 1%;
@@ -188,27 +190,18 @@ section .SelectMenu {
 </head>
 <body>
 	<section>
-		<div class="MainMenu">티셔츠</div>
-		<ul class="SubMenu">
-			<li><a href="${contextPath}/top.do">ALL</a></li>
-			<li class="SelectMenu"><a href="${contextPath}/top-1.do">티셔츠</a></li>
-			<li><a href="${contextPath}/top-2.do">셔츠</a></li>
-			<li><a href="${contextPath}/top-3.do">후드&맨투맨</a></li>
-			<li><a href="${contextPath}/top-4.do">니트&가디건</a></li>
-			<li><a href="${contextPath}/top-5.do">조끼</a></li>
-		</ul>
+		<div class="MainMenu">NEW</div>
 
 		<div>
 			<ul class="sort">
-				<li class="SelectMenu"><a href="${contextPath}/productlistLowprice.do">low price</a></li>
-				<li class="UnSelectMenu"><a href="${contextPath}/productlistHighprice.do">high price</a></li>
-				<li class="UnSelectMenu"><a href="${contextPath}/productlistName.do">name</a></li>
-				<li class="UnSelectMenu"><a href="${contextPath}/productlistNew.do">new arrival</a></li>
+				<li class="UnSelectMenu-chk"><a href="${contextPath}/new.do?p=2">low price</a></li>
+				<li class="UnSelectMenu"><a href="${contextPath}/new.do?p=3">high price</a></li>
+				<li class="UnSelectMenu"><a href="${contextPath}/new.do?p=4" >name</a></li>
+				<li class="UnSelectMenu"><a href="${contextPath}/new.do?p=1">new arrival</a></li>
 			</ul>
 		</div>
 
 		<hr>
-
 		<div class="wrap">
 			<ul>
 				<c:forEach var="list" items="${list}">
@@ -230,17 +223,7 @@ section .SelectMenu {
 				</c:forEach>
 			</ul>
 		</div>
-
 		<div class="clear"></div>
-
-
-		<!-- 페이징 글번호 -->
-
-		<div class="paging">
-			<a href="#" class="bt"><<</a> <a href="#" class="bt"><</a> <a
-				href="#" class="num-on">1</a> <a href="#" class="num">2</a> <a
-				href="#" class="bt">></a> <a href="#" class="bt">>></a>
-		</div>
 	</section>
 </body>
 </html>

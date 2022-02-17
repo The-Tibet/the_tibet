@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.board.vo;
+package com.myspring.tibet.board.vo;
 
 import java.util.Date;
 
@@ -42,6 +42,4 @@ public class QnaCommentVO {
 	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
-	
-
 }

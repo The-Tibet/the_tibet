@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+request.setCharacterEncoding("UTF-8");
+%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,13 +41,13 @@
                 <a href="${contextPath}/login.do">로그인</a>
             </li>
             <li>
-                <a href="${contextPath}/signup.do">회원가입</a>
+                <a href="${contextPath}/signupForm.do">회원가입</a>
             </li>
             <li>
-                <a href="${contextPath}/cart.do">장바구니</a>
+                <a href="${contextPath}/cart${memberInfo.user_id}.do">장바구니</a>
             </li>
             <li>
-                <a href="${contextPath}/order.do">주문조회</a>
+                <a href="${contextPath}/orderList${memberInfo.user_id}.do">주문조회</a>
             </li>
         </ul>
         <ul> PRODUCT

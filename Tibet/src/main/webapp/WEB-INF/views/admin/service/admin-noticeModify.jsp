@@ -17,8 +17,10 @@ request.setCharacterEncoding("UTF-8");
 <link rel="stylesheet" href="resources/css/admin/admin-layout.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <link rel="stylesheet" href="resources/fontawesome/css/all.css">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="resources/summernote/summernote-lite.js"></script>
@@ -27,84 +29,88 @@ request.setCharacterEncoding("UTF-8");
 
 </head>
 <body>
-<div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <h2 class="text-center">게시글 작성</h2>
-	<form action="${contextPath}/noticeModify.do" id="noticeMod" method="post">
-          <table class="table table-striped">
-            <tr>
-                <td>제목</td>
-                <td><input type="text"  class="form-control" name="notice_title"></td>
-            </tr>
-					<%
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<h2 class="text-center">게시글 수정</h2>
+			<form id="noticeMod" action="${contextPath}/noticeModify.do" method="post">
+				<input type="hidden" name="notice_num" value="${notice.notice_num}"
+					readonly="readonly" />
+				<table class="table table-striped">
+					<tr>
+						<td>제목</td>
+						<td><input type="text" class="form-control" name="notice_title" value="${notice.notice_title}" /></td>
+					</tr>
+						<%
 					session.getAttribute("memberInfo");
 					%>
-				<input type="hidden" id="관리자" name="user_id" value="${memberInfo.user_id}">
-            <tr>
-                <td>글내용</td>
-                <td><textarea id="summernote" rows="10" cols="50" name="notice_content" class="form-control"></textarea></td>
-            </tr>
+					<tr>
+						<td>글내용</td>
+						<td><textarea id="summernote" name="notice_content">
+						<c:out	value="${notice.notice_content}" /></textarea></td>
+					</tr>
+					<tr>
+						   <td colspan="2"  class="text-center">
+					<button type="button" class="btn btn-success" id="button-reg"
+						onclick="submit_check()">수정</button>
+					<button type="button" class="btn btn-warning" id="button-can"
+						onclick="delete_check()">취소</button>
+				</td>
+				</tr>
+				</table>
+				<div class="form-group form_file">
+					<div>
+						<label>이미지 첨부</label> <input
+							class="form-control form_point_color01" type="file"
+							name="notice_img1" value='<c:out value="${notice.notice_img1}"/>'>
+					</div>
+					<div>
+						<label>이미지 첨부</label> <input
+							class="form-control form_point_color01" type="file"
+							name="notice_img2" value='<c:out value="${notice.notice_img1}"/>'>
+					</div>
+					<div>
+						<label>이미지 첨부</label> <input
+							class="form-control form_point_color01" type="file"
+							name="notice_img3" value='<c:out value="${notice.notice_img1}"/>'>
+					</div>
+				</div>
+			</form>
+		<script>
+			$('#summernote').summernote(
+					{
+						height : 450,
+						lang : "ko-KR",
+						toolbar : [
+								[ 'fontname', [ 'fontname' ] ],
+								[ 'fontsize', [ 'fontsize' ] ],
+								[
+										'style',
+										[ 'bold', 'italic', 'underline',
+												'clear' ] ],
+								[ 'color', [ 'color' ] ],
+								[ 'para', [ 'paragraph' ] ],
+								[ 'insert', [ 'link', 'picture' ] ],
+								[ 'view', [] ] ]
+					});
+			function submit_check() {
+				var answer;
+				answer = confirm("수정하시겠습니까?");
+				if (answer == true) {
 
-            <tr>
-                <td colspan="2"  class="text-center">
-                    <input type="submit" value="글쓰기" class="btn btn-success"
-              	onclick="javascript:submit_check('${contextPath}/notice.do')">
-                    <input type="reset" value="취소" class="btn btn-warning"
-                    	onclick="javascript:delete_check()">
-                </td>
-            </tr>
-          </table>
-					<div class="form-group form_file">
-						<div>
-							<label>이미지 첨부</label> 
-							<input class="form-control form_point_color01" type="file" name="notice_img1">
-						</div>
-						<div>
-							<label>이미지 첨부</label> 
-							<input class="form-control form_point_color01" type="file" name="notice_img2">
-						</div>
-						<div>
-							<label>이미지 첨부</label> 
-							<input class="form-control form_point_color01" type="file" name="notice_img3">
-						</div>
-						</div>
-        </form>
-        </div>
-        </div>
-	<script>
-	   $('#summernote').summernote({
-			height: 450,
-			lang: "ko-KR",
-            toolbar: [
-                ['fontname', ['fontname']],
-                ['fontsize', ['fontsize']],
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['paragraph']],
-                ['insert', ['link', 'picture']],
-                ['view', []]
-            ]
-		});
-		function submit_check() {
-			var answer;
-			answer = confirm("수정하시겠습니까?");
-			if (answer == true) {
-
-				document.getElementById('noticeMod').submit();
-				location = url;
+					document.getElementById('noticeMod').submit();
+				}
 			}
-		}
-		function delete_check() {
-			var answer;
-			//페이지를 이동하기 전에 confirm()을 사용해 다시 한번 확인한다.
-			//확인을 선택하면 answer에  true, 취소를 선택하면 false 값이 들어간다.
-			answer = confirm("글 수정을 취소하시겠습니까?");
-			//확인을 선택한 경우 자바스크립트를 호출할 때 같이 넘어온 url이라는 변수에 들어있는 주소로 페이지 이동
-			if (answer == true) {
-				history.go(-1);
+			function delete_check() {
+				var answer;
+				//페이지를 이동하기 전에 confirm()을 사용해 다시 한번 확인한다.
+				//확인을 선택하면 answer에  true, 취소를 선택하면 false 값이 들어간다.
+				answer = confirm("글 수정을 취소하시겠습니까?");
+				//확인을 선택한 경우 자바스크립트를 호출할 때 같이 넘어온 url이라는 변수에 들어있는 주소로 페이지 이동
+				if (answer == true) {
+					history.go(-1);
+				}
 			}
-		}
-	</script>
+		</script>
 </body>
 </html>

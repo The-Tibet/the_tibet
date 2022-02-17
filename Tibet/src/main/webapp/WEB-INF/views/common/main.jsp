@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+request.setCharacterEncoding("UTF-8");
+%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,7 +17,6 @@
     <link rel="stylesheet" href="resources/fontawesome/css/all.css">
     <link rel="stylesheet" href="resources/css/reset.css">
     <link rel="stylesheet" href="resources/css/style.css">
-
 
     <script src="resources/js/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="resources/slick/slick.css">
@@ -52,27 +57,10 @@
         <article class="new-wrap">
             <div class="new">
                 <img src="resources/img/main3.png" alt="">
-                <a class="new-btn" href="">New Item</a>
+                <a class="new-btn" href="${contextPath}/new.do">New Item</a>
             </div>
         </article>
 
-        <div class="container">
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <div class="item"></div>
-            <ul>
-                <li><a href="">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li><a href="">4</a></li>
-                <li><a href="">5</a></li>
-                <li><a href="">6</a></li>
-                <li><a href="">7</a></li>
-                <li><a href="">8</a></li>
-            </ul>
-        </div>
     </section>
     
     <script>

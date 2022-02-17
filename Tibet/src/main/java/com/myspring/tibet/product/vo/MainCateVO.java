@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.product.vo;
+package com.myspring.tibet.product.vo;
 
 import org.springframework.stereotype.Component;
 

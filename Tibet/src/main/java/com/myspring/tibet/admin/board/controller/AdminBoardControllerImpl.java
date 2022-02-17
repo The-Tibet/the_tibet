@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.admin.board.controller;
+package com.myspring.tibet.admin.board.controller;
 
 import java.util.List;
 
@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.tibet.admin.board.service.AdminBoardSerivce;
 import com.myspring.tibet.board.vo.NoticeVO;
+import com.myspring.tibet.board.vo.QnaVO;
 import com.myspring.tibet.utils.PageMaker;
 import com.myspring.tibet.utils.SearchCriteria;
 
@@ -102,17 +103,18 @@ public class AdminBoardControllerImpl implements AdminBoardController {
 	// 공지사항 수정
 	@Override
 	@RequestMapping(value = "/noticeModify.do", method = RequestMethod.POST)
-	public ResponseEntity modifynotice(@ModelAttribute("_noticeVO") NoticeVO _noticeVO, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
+	public ResponseEntity modifynotice(NoticeVO noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
-		logger.info("update POST ..... {}", noticeVO);
 		String message = null;
 		ResponseEntity resEntity = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		System.out.println("컨트롤러 : " + noticeVO.getNotice_content());
+		System.out.println("컨트롤러 : " + noticeVO.getNotice_num());
+		System.out.println("컨트롤러 : " + noticeVO.getNotice_title());
 		try {
-			adminBoardSerivce.modifynotice(_noticeVO);
+			adminBoardSerivce.modifynotice(noticeVO);
 			message = "<script>";
 			message += " alert('글 수정이 완료되었습니다. 원래 페이지로 돌아갑니다.');";
 			message += " location.href='" + request.getContextPath() + "/admin-notice.do';";

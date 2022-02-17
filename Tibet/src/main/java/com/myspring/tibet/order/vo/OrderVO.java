@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.order.vo;
+package com.myspring.tibet.order.vo;
 
 import java.util.Date;
 

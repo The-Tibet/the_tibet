@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.board.controller;
+package com.myspring.tibet.board.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -19,12 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myspring.tibet.board.service.BoardService;
-import com.myspring.tibet.board.vo.NoticeVO;
 import com.myspring.tibet.board.vo.QnaVO;
 import com.myspring.tibet.product.service.ProductService;
 import com.myspring.tibet.utils.Criteria;
 import com.myspring.tibet.utils.PageMaker;
-import com.myspring.tibet.utils.SearchCriteria;
 
 @Controller("boardController")
 public class BoardControllerImpl implements BoardController {
@@ -33,6 +31,26 @@ public class BoardControllerImpl implements BoardController {
 	private BoardService boardService;
 	@Autowired
 	private ProductService productService;
+	
+//	@Override
+//	@RequestMapping(value = "/notice.do", method = {RequestMethod.GET, RequestMethod.POST})  
+//	public ModelAndView listNotices(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String viewName = (String)request.getAttribute("viewName");
+//		List noticesList = boardService.listNotices();
+//		ModelAndView mav = new ModelAndView(viewName);
+//		mav.addObject("noticesList", noticesList);
+//		return mav;
+//	}
+	
+//	@Override
+//	@RequestMapping(value = "/qna.do", method = {RequestMethod.GET, RequestMethod.POST}) 
+//	public ModelAndView listQnas(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		String viewName = (String)request.getAttribute("viewName");
+//		List qnasList = boardService.listQnas();
+//		ModelAndView mav = new ModelAndView(viewName);
+//		mav.addObject("qnasList", qnasList);
+//		return mav;
+//	}
 	
 	@Override
 	@RequestMapping(value = "/qnaWrt.do", method = RequestMethod.POST)
@@ -77,33 +95,17 @@ public class BoardControllerImpl implements BoardController {
 		mav.setViewName("/qnaWrite");
 		return mav;
 	}
-	// QNA 페이징+검색 목록
+	
 	@Override
 	@RequestMapping(value = "/qna.do")
-	public ModelAndView openQnaList(SearchCriteria scri, HttpServletRequest request) throws Exception {
+	public ModelAndView openQnaList(Criteria cri, HttpServletRequest request) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(boardService.countQnaList(scri));
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(boardService.countQnaListTotal());
 
-		List<QnaVO> list = boardService.selectQnaList(scri);
-		mav.addObject("list", list);
-		mav.addObject("pageMaker", pageMaker);
-		return mav;
-	}
-	
-	// 공지사항 페이징+검색 목록
-	@Override
-	@RequestMapping(value = "/notice.do", method = RequestMethod.GET)
-	public ModelAndView openNoticeList (SearchCriteria scri, HttpServletRequest request) throws Exception {
-		String viewName = (String) request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(boardService.countNoticeList(scri));
-
-		List<NoticeVO> list = boardService.selectAllNoticesList(scri);
+		List<Map<String, Object>> list = boardService.selectQnaList(cri);
 		mav.addObject("list", list);
 		mav.addObject("pageMaker", pageMaker);
 		return mav;
@@ -165,10 +167,33 @@ public class BoardControllerImpl implements BoardController {
 	}
 
 	@Override
+	@RequestMapping(value = "/notice.do")
+	public ModelAndView openNoticeList(Criteria cri, HttpServletRequest request) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(boardService.countNoticeListTotal());
+
+		List<Map<String, Object>> list = boardService.selectNoticeList(cri);
+		mav.addObject("list", list);
+		mav.addObject("pageMaker", pageMaker);
+		return mav;
+	}
+
+	@Override
 	@RequestMapping(value = "/noticeDetail{notice_num}.do", method = RequestMethod.GET)
 	public ModelAndView noticeDetail(@PathVariable("notice_num") Integer notice_num, ModelAndView mav) throws Exception {
 		mav.setViewName("/noticeDetail");
 		mav.addObject("notice", boardService.noticeDetail(notice_num));
 		return mav;
 	}
+	
+	//페이지 수정
+//	@Override	  
+//	@RequestMapping(value="/qnaModify.do", method=RequestMethod.POST) 
+//	public String boardModifyPOST(QnaVO qnaVO) {
+//		boardService.modifyQna(qnaVO);	  
+//		return "redirect:/qna.do";
+//	}
 }

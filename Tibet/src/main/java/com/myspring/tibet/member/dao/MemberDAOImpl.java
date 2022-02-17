@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.member.dao;
+package com.myspring.tibet.member.dao;
 
 import java.util.Map;
 
@@ -14,25 +14,11 @@ import com.myspring.tibet.member.vo.MemberVO;
 public class MemberDAOImpl implements MemberDAO{
 	@Autowired
 	private SqlSession sqlSession;	
-	// 실험용 코드
+	// ����� �ڵ�
 	private static final String NS = "mapper.member";
 	private static final String GET_BY_SNS_NAVER = NS + ".getBySnsNaver";
 	private static final String GET_BY_SNS_GOOGLE = NS + ".getBySnsGoogle";
 	
-	@Override
-	public MemberVO getBySns(MemberVO snsUser) {
-		if (StringUtils.isNotEmpty(snsUser.getNaverid())) {
-			return sqlSession.selectOne(GET_BY_SNS_NAVER, snsUser.getNaverid());
-		} else {
-			return sqlSession.selectOne(GET_BY_SNS_GOOGLE, snsUser.getGoogleid());
-		}
-	}
-
-	
-	@Override
-	public int updatePoint(Map<String, Object> map) throws DataAccessException {
-		return sqlSession.update("mapper.member.updatePoint", map);
-	}
 	@Override
 	public MemberVO login(Map loginMap) throws DataAccessException{
 		MemberVO member = (MemberVO)sqlSession.selectOne("mapper.member.login", loginMap);
@@ -78,6 +64,24 @@ public class MemberDAOImpl implements MemberDAO{
 		return sqlSession.update("mapper.member.modifyMember", vo);		
 	}
 
+	// SNS관련 기능들
+//	@Override 
+//	public MemberVO getBySns(MemberVO memberVO) throws DataAccessException { 
+//		MemberVO member = sqlSession.selectOne("mapper.member.getBySnsNaver", memberVO); 
+//		return member; 
+//	}
+	  
+	@Override
+	public MemberVO getBySns(MemberVO snsUser) {
+		if (StringUtils.isNotEmpty(snsUser.getNaverid())) {
+			return sqlSession.selectOne(GET_BY_SNS_NAVER, snsUser.getNaverid());
+		} else {
+			return sqlSession.selectOne(GET_BY_SNS_GOOGLE, snsUser.getGoogleid());
+		}
+	}
 
-
+	@Override
+	public int updatePoint(Map<String, Object> map) throws DataAccessException {
+		return sqlSession.update("mapper.member.updatePoint", map);
+	}
 }
