@@ -70,60 +70,46 @@ section .SelectMenu {
 	<section>
 		<div class="MainMenu">니트&가디건</div>
 		<ul class="SubMenu">
-			<li><a href="${contextPath}/top.do">ALL</a></li>
-			<li><a href="${contextPath}/top-1.do">티셔츠</a></li>
-			<li><a href="${contextPath}/top-2.do">셔츠</a></li>
-			<li><a href="${contextPath}/top-3.do">후드&맨투맨</a></li>
-			<li class="SelectMenu"><a href="${contextPath}/top-4.do">니트&가디건</a></li>
-			<li><a href="${contextPath}/top-5.do">조끼</a></li>
+			<li><a href="${contextPath}/top.do?p=1">ALL</a></li>
+			<li><a href="${contextPath}/top-1.do?p=1">티셔츠</a></li>
+			<li><a href="${contextPath}/top-2.do?p=1">셔츠</a></li>
+			<li><a href="${contextPath}/top-3.do?p=1">후드&맨투맨</a></li>
+			<li class="SelectMenu"><a href="${contextPath}/top-4.do?p=1">니트&가디건</a></li>
+			<li><a href="${contextPath}/top-5.do?p=1">조끼</a></li>
 		</ul>
 
 		<div>
 			<ul class="sort">
-				<li class="UnSelectMenu-chk"><a href="#">low price</a></li>
-				<li class="UnSelectMenu"><a href="#">high price</a></li>
-				<li class="UnSelectMenu"><a href="#">name</a></li>
-				<li class="UnSelectMenu"><a href="#">new arrival</a></li>
+				<li class="UnSelectMenu-chk"><a href="${contextPath}/top.do?p=2">low price</a></li>
+				<li class="UnSelectMenu"><a href="${contextPath}/top.do?p=3">high price</a></li>
+				<li class="UnSelectMenu"><a href="${contextPath}/top.do?p=4">name</a></li>
+				<li class="UnSelectMenu"><a href="${contextPath}/top.do?p=1">new arrival</a></li>
 			</ul>
 		</div>
 
 		<hr>
-		<div class="row">
-			<c:choose>
-				<c:when test="${empty productList}">
-					<b><span class="noProd">등록된 상품이 없습니다.</span></b>
-				</c:when>
-				<c:when test="${!empty productList}">
-					<c:forEach var="product" items="${productList}" varStatus="productNum">
-						<div class="col-md-4 ftco-animate">
-							<div class="blog-entry">
-								<a
-									href="${contextPath}/product/viewProduct.do?productNum=${product.productNum}"
-									class="block-20"
-									style="background-image: url('${contextPath}/resources/images/image_1.jpg');">
-								</a>
-
-								<div class="text d-flex py-1">
-									<div class="desc pl-2">
-										<h3 class="heading">
-											<a href="${contextPath}/product/viewProduct.do?productNum=${product.productNum}">${product.productName}</a>
-										</h3>
-
-										<hr style="margin-top: 25px;">
-										<h3 class="heading" style="padding-left: 67%; white-space: nowrap;">
-											<a
-												href="${contextPath}/product/viewProduct.do?productNum=${product.productNum}"
-												style="font-size: 22px;"><fmt:formatNumber
-													pattern="###,###,###" value="${product.productPrice}" /></a>
-										</h3>
-									</div>
-								</div>
-							</div>
-						</div>
-					</c:forEach>
-				</c:when>
-			</c:choose>
+		<div class="wrap">
+			<ul>
+				<c:forEach var="list" items="${list}">
+					<li>
+						<ul class="items">
+							<li><a
+								href="${contextPath}/productDetail${list.product_num}.do"> <img
+									src="resources/${list.product_thumbnail}"></a></li>
+							<li class="a"><a href="${contextPath}/productDetail${list.product_num}.do">${list.product_name}</a></li>
+							<c:if test="${list.product_sale eq 0}">
+								<li class="b"><fmt:formatNumber value="${list.product_price}" pattern="###,###,###원" /></li>
+							</c:if>
+							<c:if test="${list.product_sale ne 0}">
+								<li class="c"><fmt:formatNumber value="${list.product_price}" pattern="###,###,###원" /></li>
+								<li class="d"><fmt:formatNumber value="${list.product_price - list.product_sale}" pattern="###,###,###원" /></li>
+							</c:if>
+						</ul>
+					</li>
+				</c:forEach>
+			</ul>
 		</div>
+		<div class="clear"></div>
 	</section>
 </body>
 </html>

@@ -6,74 +6,38 @@
 request.setCharacterEncoding("UTF-8");
 %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>티벳샵</title>
-
-<link rel="stylesheet" href="resources/fontawesome/css/all.css">
-<link rel="stylesheet" href="resources/css/reset.css">
-<link rel="stylesheet" href="resources/css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&family=Roboto&display=swap" rel="stylesheet">
-
-<script src="resources/js/jquery-3.6.0.min.js"></script>
-
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
-<title>header</title>
+<meta charset="utf-8" />
+<title>관리자 헤더</title>
 </head>
 <body>
-	<header>
-		<ul class="top-menu">
-			<!--  로그인시 로그아웃표시 -->
-			<c:choose>
-				<c:when test="${isLogOn==true and not empty memberInfo and memberInfo.user_id !='admin'}">
-					<li><a href="${contextPath}/notice.do">SERVICE</a></li>
-					<li><a href="${contextPath}/logout.do">LOGOUT</a></li>
-					<li><a href="${contextPath}/memModifyForm.do">MYPAGE</a></li>
-					<li><a href="${contextPath}/cart.do">CART</a></li>
-			<!-- 관리자로 로그인시 관리자표시 -->
-				</c:when>
-				<c:when test="${isLogOn==true and not empty memberInfo and memberInfo.user_id =='admin' }">
-					<li><a href="${contextPath}/notice.do">SERVICE</a></li>
-					<li><a href="${contextPath}/logout.do">LOGOUT</a></li>
-					<li class="no_line"><a
-						href="${contextPath}/admin-notice.do">Manager</a></li>
-				</c:when>
-				<c:otherwise>
-					<li><a href="${contextPath}/notice.do">SERVICE</a></li>
-					<li><a href="${contextPath}/login.do">LOGIN</a></li>
-					<li><a href="${contextPath}/signupForm.do">SIGN UP</a></li>
-				</c:otherwise>
-			</c:choose>
-</ul>
-	</header>
-
-	<div class="modal">
-		<div class="modal_body">
-			<h1>SEARCH</h1>
-			<div class="close">
-				<button id="close-button">
-					<i class="fas fa-times"></i>
-				</button>
-			</div>
-			<div class="wraps">
-				<div class="search">
-					<input type="text" class="searchTerm"
-						placeholder="What are you looking for?">
-					<button type="submit" class="searchButton">
-						<i class="fas fa-search"></i>
-					</button>
-				</div>
-			</div>
-			</div>
-		</div>
+<body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand ps-3" href="${contextPath}/main.do">THE TIBET</a>
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                </div>
+            </form>
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!">설정</a></li>
+                        <li><a class="dropdown-item" href="#!">프로필</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="${contextPath}/logout.do">로그아웃</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
 </body>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="resources/js/admin/datatables-simple-demo.js"></script>
+      	<script src="resources/js/admin/scripts.js"></script>
 </html>

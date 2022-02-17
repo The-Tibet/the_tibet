@@ -7,38 +7,12 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.myspring.tibet.product.dao.ProductDAO;
-import com.myspring.tibet.product.vo.MainCateVO;
 import com.myspring.tibet.product.vo.ProductVO;
 
 @Service("productService")
 public class ProductServiceImpl implements ProductService{
 	@Inject
 	private ProductDAO productDao;
-	
-	@Override
-	public List<ProductVO> productListNew() throws Exception {
-		return productDao.productlistNew();
-	}
-	
-	@Override
-	public List<ProductVO> productListHighprice() throws Exception {
-		return productDao.productlistHighprice();
-	}
-	
-	@Override
-	public List<ProductVO> productListLowprice() throws Exception {
-		return productDao.productlistLowprice();
-	}
-	
-//	@Override	
-//	public List<ProductVO> productListName(int main_category_num) throws Exception {	
-//		return productDao.productlistName(main_category_num);	
-//	}
-	
-	@Override
-	public List<ProductVO> productListName() throws Exception {
-		return productDao.productlistName();
-	}
 	
 	@Override
 	public ProductVO productDetail(String product_num) throws Exception {
@@ -55,8 +29,126 @@ public class ProductServiceImpl implements ProductService{
 		return productDao.productSize(product_num);
 	}
 	
-	@Override	
-	public List<MainCateVO> mainCate() throws Exception {	
-		return productDao.mainCate();	
+	@Override
+	public List<ProductVO> NEW(int value) throws Exception {
+		System.out.println("Service : " +  value);	
+		return productDao.NEW(value);
 	}
+	
+	@Override
+	public List<ProductVO> OUTER(int value) throws Exception {
+		return productDao.OUTER(value);
+	}
+	
+	@Override
+	public List<ProductVO> TOP(int value) throws Exception {
+		return productDao.TOP(value);
+	}
+	
+	@Override
+	public List<ProductVO> PANTS(int value) throws Exception {
+		return productDao.PANTS(value);
+	}
+	
+	@Override
+	public List<ProductVO> BAG(int value) throws Exception {
+		return productDao.BAG(value);
+	}
+	
+	@Override
+	public List<ProductVO> ACC(int value) throws Exception {
+		return productDao.ACC(value);
+	}
+	
+	@Override
+	public List<ProductVO> SALE(int value) throws Exception {
+		return productDao.SALE(value);
+	}
+	
+	@Override
+	public List<ProductVO> OUTER1(int value) throws Exception {
+		return productDao.OUTER1(value);
+	}
+
+	@Override
+	public List<ProductVO> OUTER2(int value) throws Exception {
+		return productDao.OUTER2(value);
+	}
+	
+	@Override
+	public List<ProductVO> TOP1(int value) throws Exception {
+		return productDao.TOP1(value);
+	}
+	
+	@Override
+	public List<ProductVO> TOP2(int value) throws Exception {
+		return productDao.TOP2(value);
+	}
+	
+	@Override
+	public List<ProductVO> TOP3(int value) throws Exception {
+		return productDao.TOP3(value);
+	}
+	
+	@Override
+	public List<ProductVO> TOP4(int value) throws Exception {
+		return productDao.TOP4(value);
+	}
+	
+	@Override
+	public List<ProductVO> TOP5(int value) throws Exception {
+		return productDao.TOP5(value);
+	}
+	
+	@Override
+	public List<ProductVO> PANTS1(int value) throws Exception {
+		return productDao.PANTS1(value);
+	}
+	
+	@Override
+	public List<ProductVO> PANTS2(int value) throws Exception {
+		return productDao.PANTS2(value);
+	}
+	
+	@Override
+	public List<ProductVO> BAG1(int value) throws Exception {
+		return productDao.BAG1(value);
+	}
+	
+	@Override
+	public List<ProductVO> BAG2(int value) throws Exception {
+		return productDao.BAG2(value);
+	}
+	
+	@Override
+	public List<ProductVO> BAG3(int value) throws Exception {
+		return productDao.BAG3(value);
+	}
+	
+	@Override
+	public List<ProductVO> BAG4(int value) throws Exception {
+		return productDao.BAG4(value);
+	}
+
+	@Override
+	public List<ProductVO> ACC1(int value) throws Exception {
+		return productDao.ACC1(value);
+	}
+	
+	@Override
+	public List<ProductVO> ACC2(int value) throws Exception {
+		return productDao.ACC2(value);
+	}
+	
+	@Override
+	public List<ProductVO> ACC3(int value) throws Exception {
+		return productDao.ACC3(value);
+	}
+	
+	@Override
+	public List<ProductVO> ACC4(int value) throws Exception {
+		return productDao.ACC4(value);
+	}
+	
+	
 }

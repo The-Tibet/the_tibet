@@ -123,25 +123,24 @@ section .SelectMenu {
 	<section>
 		<div class="MainMenu">티셔츠</div>
 		<ul class="SubMenu">
-			<li><a href="${contextPath}/top.do">ALL</a></li>
-			<li class="SelectMenu"><a href="${contextPath}/top-1.do">티셔츠</a></li>
-			<li><a href="${contextPath}/top-2.do">셔츠</a></li>
-			<li><a href="${contextPath}/top-3.do">후드&맨투맨</a></li>
-			<li><a href="${contextPath}/top-4.do">니트&가디건</a></li>
-			<li><a href="${contextPath}/top-5.do">조끼</a></li>
+			<li><a href="${contextPath}/top.do?p=1">ALL</a></li>
+			<li class="SelectMenu"><a href="${contextPath}/top-1.do?p=1">티셔츠</a></li>
+			<li><a href="${contextPath}/top-2.do?p=1">셔츠</a></li>
+			<li><a href="${contextPath}/top-3.do?p=1">후드&맨투맨</a></li>
+			<li><a href="${contextPath}/top-4.do?p=1">니트&가디건</a></li>
+			<li><a href="${contextPath}/top-5.do?p=1">조끼</a></li>
 		</ul>
 
 		<div>
 			<ul class="sort">
-				<li class="UnSelectMenu-chk"><a href="${contextPath}/productlistLowprice.do">low price</a></li>
-				<li class="UnSelectMenu"><a href="${contextPath}/productlistHighprice.do">high price</a></li>
-				<li class="UnSelectMenu"><a href="${contextPath}/productlistName.do">name</a></li>
-				<li class="UnSelectMenu"><a href="${contextPath}/productlistNew.do">new arrival</a></li>
+				<li class="UnSelectMenu-chk"><a href="${contextPath}/top.do?p=2">low price</a></li>
+				<li class="UnSelectMenu"><a href="${contextPath}/top.do?p=3">high price</a></li>
+				<li class="UnSelectMenu"><a href="${contextPath}/top.do?p=4">name</a></li>
+				<li class="UnSelectMenu"><a href="${contextPath}/top.do?p=1">new arrival</a></li>
 			</ul>
 		</div>
 
 		<hr>
-
 		<div class="wrap">
 			<ul>
 				<c:forEach var="list" items="${list}">
@@ -163,9 +162,7 @@ section .SelectMenu {
 				</c:forEach>
 			</ul>
 		</div>
-		
 		<div class="clear"></div>
-		
 	</section>
 </body>
 </html>

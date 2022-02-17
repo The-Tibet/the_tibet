@@ -832,8 +832,6 @@
 				}
 			}
 			
-			//iamport();
-			
 			/* Form Submit */
 			$(".order_form").html(form_contents);		
 			$("#update_point").val(update_point_var);			

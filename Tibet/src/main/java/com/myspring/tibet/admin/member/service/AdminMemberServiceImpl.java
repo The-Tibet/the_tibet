@@ -31,5 +31,4 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	public void memberDelete(String user_id) {
 		adminMemberDAO.memberDelete(user_id);
 	}
-
 }

@@ -67,13 +67,13 @@ request.setCharacterEncoding("UTF-8");
                 <span></span>
                 <span></span>
             </label></li>
-      		<li class="nav-table-menu"><a href="${contextPath}/new.do">NEW</a></li>
-			<li class="nav-table-menu"><a href="${contextPath}/outer.do">OUTER</a></li>
-			<li class="nav-table-menu"><a href="${contextPath}/productlistNew.do">TOP</a></li>
-			<li class="nav-table-menu"><a href="${contextPath}/pants.do">PANTS</a></li>
-			<li class="nav-table-menu"><a href="${contextPath}/bag.do">BAG</a></li>
-			<li class="nav-table-menu"><a href="${contextPath}/acc.do">ACC</a></li>
-			<li class="nav-table-menu"><a href="${contextPath}/sale.do">SALE</a></li>
+      		<li class="nav-table-menu"><a href="${contextPath}/new.do?p=1">NEW</a></li>
+			<li class="nav-table-menu"><a href="${contextPath}/outer.do?p=1">OUTER</a></li>
+			<li class="nav-table-menu"><a href="${contextPath}/top.do?p=1">TOP</a></li>
+			<li class="nav-table-menu"><a href="${contextPath}/pants.do?p=1">PANTS</a></li>
+			<li class="nav-table-menu"><a href="${contextPath}/bag.do?p=1">BAG</a></li>
+			<li class="nav-table-menu"><a href="${contextPath}/acc.do?p=1">ACC</a></li>
+			<li class="nav-table-menu"><a href="${contextPath}/sale.do?p=1">SALE</a></li>
 <%--           <c:forEach var="list" items="${a}">
 				<li class="nav-table-menu"><a href="${contextPath}/productlistName${list.main_category_num}.do">${list.main_category_name}</a></li>
 			</c:forEach> --%>
@@ -87,49 +87,49 @@ request.setCharacterEncoding("UTF-8");
                 </div>
 			 	<div class="submenu01" id="submenu10-1">
                     <ul>
-                        <li><a href="${contextPath}/new.do">신상품</a></li>
+                        <li><a href="${contextPath}/new.do?p=1">신상품</a></li>
                     </ul>
                 </div>
                 <div class="submenu02" id="submenu10-1">
                     <ul>
-                        <li><a href="${contextPath}/outer-1.do">재킷&점퍼</a></li>
-                        <li><a href="${contextPath}/outer-2.do">코트</a></li>
+                        <li><a href="${contextPath}/outer-1.do?p=1">재킷&점퍼</a></li>
+                        <li><a href="${contextPath}/outer-2.do?p=1">코트</a></li>
                     </ul>
                 </div>
                 <div class="submenu03" id="submenu10-1">
                     <ul>
-                        <li><a href="${contextPath}/top-1.do">티셔츠</a></li>
-                        <li><a href="${contextPath}/top-2.do">셔츠</a></li>
-                        <li><a href="${contextPath}/top-3.do">후드&맨투맨</a></li>
-                        <li><a href="${contextPath}/top-4.do">니트&가디건</a></li>
-                        <li><a href="${contextPath}/top-5.do">조끼</a></li>
+                        <li><a href="${contextPath}/top-1.do?p=1">티셔츠</a></li>
+                        <li><a href="${contextPath}/top-2.do?p=1">셔츠</a></li>
+                        <li><a href="${contextPath}/top-3.do?p=1">후드&맨투맨</a></li>
+                        <li><a href="${contextPath}/top-4.do?p=1">니트&가디건</a></li>
+                        <li><a href="${contextPath}/top-5.do?p=1">조끼</a></li>
                     </ul>
                 </div>
                 <div class="submenu04" id="submenu10-1">
                     <ul>
-                        <li><a href="${contextPath}/pants-1.do">팬츠</a></li>
-                        <li><a href="${contextPath}/pants-2.do">쇼츠</a></li>
+                        <li><a href="${contextPath}/pants-1.do?p=1">팬츠</a></li>
+                        <li><a href="${contextPath}/pants-2.do?p=1">쇼츠</a></li>
                     </ul>
                 </div>
                 <div class="submenu05" id="submenu10-1">
                     <ul>
-                        <li><a href="${contextPath}/bag-1.do">숄더백</a></li>
-                        <li><a href="${contextPath}/bag-2.do">백팩</a></li>
-                        <li><a href="${contextPath}/bag-3.do">크로스백</a></li>
-                        <li><a href="${contextPath}/bag-4.do">메선저백</a></li>
+                        <li><a href="${contextPath}/bag-1.do?p=1">숄더백</a></li>
+                        <li><a href="${contextPath}/bag-2.do?p=1">백팩</a></li>
+                        <li><a href="${contextPath}/bag-3.do?p=1">크로스백</a></li>
+                        <li><a href="${contextPath}/bag-4.do?p=1">메선저백</a></li>
                     </ul>
                 </div>
                 <div class="submenu06" id="submenu10-1">
                     <ul>
-                        <li><a href="${contextPath}/acc-1.do">모자</a></li>
-                        <li><a href="${contextPath}/acc-2.do">반지&팔찌</a></li>
-                        <li><a href="${contextPath}/acc-3.do">선글라스</a></li>
-                        <li><a href="${contextPath}/acc-4.do">밸트</a></li>
+                        <li><a href="${contextPath}/acc-1.do?p=1">모자</a></li>
+                        <li><a href="${contextPath}/acc-2.do?p=1">반지&팔찌</a></li>
+                        <li><a href="${contextPath}/acc-3.do?p=1">선글라스</a></li>
+                        <li><a href="${contextPath}/acc-4.do?p=1">밸트</a></li>
                     </ul>
                 </div>
                 <div class="submenu07" id="submenu10-1">
                     <ul>
-                        <li><a href="${contextPath}/sale.do">세일</a></li>
+                        <li><a href="${contextPath}/sale.do?p=1">세일</a></li>
                     </ul>
                 </div>
 			 </div>
