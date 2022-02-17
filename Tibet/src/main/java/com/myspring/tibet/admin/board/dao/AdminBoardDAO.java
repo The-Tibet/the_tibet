@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.admin.board.dao;
+package com.myspring.tibet.admin.board.dao;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public interface AdminBoardDAO {
 	public int modifynotice(NoticeVO noticeVO);
 	// 공지사항 삭제
     public void noticedelete(String notice_num); 
-	// 공지사항 페이징
+    // 공지사항 페이징
     public  List<NoticeVO> selectAllNoticesList(SearchCriteria scri) throws Exception;
 	// 공지사항 목록
 	public int adminopenNoticeList(SearchCriteria scri) throws Exception;

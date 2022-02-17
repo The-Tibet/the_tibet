@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.admin.board.service;
+package com.myspring.tibet.admin.board.service;
 
 import java.util.List;
 
@@ -15,8 +15,7 @@ public interface AdminBoardSerivce {
 	// 공지사항 선택삭제
 	public void noticedelete(String notice_num);
 	// 공지사항 목록
-	 public int adminopenNoticeList(SearchCriteria scri) throws Exception; 
+	public int adminopenNoticeList(SearchCriteria scri) throws Exception; 
 	// 공지사항 페이징
 	public List<NoticeVO> selectAllNoticesList(SearchCriteria scri) throws Exception;
 }
-

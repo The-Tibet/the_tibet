@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.admin.member.controller;
+package com.myspring.tibet.admin.member.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -26,7 +26,8 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 	// 메인
 	@RequestMapping(value = "/admin-main.do", method = RequestMethod.GET)
 	public void adminmain() throws Exception {
-}
+		
+	}
 	
 	// 회원 목록페이지
 	@RequestMapping(value = "/admin-memberlist.do")
@@ -53,5 +54,3 @@ public class AdminMemberControllerImpl implements AdminMemberController {
 		return "redirect:/admin-memberlist.do";
 	}
 }
-
-	

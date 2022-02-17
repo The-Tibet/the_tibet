@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.admin.board.controller;
+package com.myspring.tibet.admin.board.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,8 +27,8 @@ public interface AdminBoardController {
 	// 공지사항 수정
 	public ResponseEntity modifynotice(NoticeVO _noticeVO, HttpServletRequest request, HttpServletResponse response) throws Exception;
 	// 공지사항 수정 페이지
-	public ModelAndView noticeModifyForm(Integer qna_num, ModelAndView mav) throws Exception;
-	
-
+	public ModelAndView noticeModifyForm(@PathVariable("notice_num") Integer notice_num, ModelAndView mav) throws Exception;
 }
+
+
 

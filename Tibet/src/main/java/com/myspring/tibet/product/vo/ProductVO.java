@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.product.vo;
+package com.myspring.tibet.product.vo;
 
 import java.sql.Date;
 
@@ -27,7 +27,7 @@ public class ProductVO {
 	private String size1;
 	private String size2;
 	private String size3;
-	
+
 	public String getProduct_num() {
 		return product_num;
 	}

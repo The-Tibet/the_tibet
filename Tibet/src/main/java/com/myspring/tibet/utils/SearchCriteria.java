@@ -1,7 +1,6 @@
 package com.myspring.tibet.utils;
 
 public class SearchCriteria extends Criteria{
-
 	private String searchType = "";
 	private String keyword = "";
 	 
@@ -21,5 +20,4 @@ public class SearchCriteria extends Criteria{
 	public String toString() {
 		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + "]";
 	}
-	
 }

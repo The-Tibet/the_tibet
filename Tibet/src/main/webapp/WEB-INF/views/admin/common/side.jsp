@@ -38,7 +38,7 @@
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">리뷰</a>
+                                    <a class="nav-link" href="#">리뷰</a>
                                 </nav>
                             </div>
                             <!-- 상품 소분류1-->
@@ -56,7 +56,7 @@
                                     
                                     <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                         <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="${contextPath}/admin-product.do">상품 목록</a>
+                                            <a class="nav-link" href="#">상품 목록</a>
                                             <a class="nav-link" href="#">상품 카테고리</a>
                                         </nav>
                                     </div>
@@ -75,7 +75,7 @@
                             </div>
                             <!-- 게시판 -->
                             <div class="sb-sidenav-menu-heading">게시판</div>
-                            <a class="nav-link" href="${contextPath}/admin-qna.do">
+                            <a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Q&A
                             </a>

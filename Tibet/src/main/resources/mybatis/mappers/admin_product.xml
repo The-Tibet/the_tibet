@@ -37,8 +37,9 @@
 		main_category_num
 		from product where product_num=#{product_num}
 	</select>
+	
 	<!-- 상품 페이징 -->
-<select id="selectAllProductList" resultType="hashmap" parameterType="hashmap">
+	<select id="selectAllProductList" resultType="hashmap" parameterType="hashmap">
      	SELECT cast(@num:=@num+1 AS signed integer) AS num,
 		    product_num,
 			product_name,
@@ -48,9 +49,11 @@
 		FROM (SELECT @num:=(#{pageStart}/#{perPageNum})*(${perPageNum})) AS p, product
 		ORDER BY product_date DESC
 		LIMIT #{pageStart}, #{perPageNum}
-</select>
+	</select>
+	
 	<!-- 상품 목록 -->
 	<select id="adminopenProductList" parameterType="productVO" resultType="int">
 		select count(*) from product
 	</select>	
+	
 </mapper>

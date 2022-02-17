@@ -1,4 +1,4 @@
-﻿package com.myspring.tibet.admin.board.dao;
+package com.myspring.tibet.admin.board.dao;
 
 import java.util.List;
 
@@ -15,6 +15,7 @@ import com.myspring.tibet.utils.SearchCriteria;
 public class AdminBoardDAOImpl  implements AdminBoardDAO {
 	@Inject
     private SqlSession sqlSession;
+	
 	// 공지사항 글쓰기
 	@Override
 	public void insertNoticeWritePage(NoticeVO noticeVO) throws DataAccessException{
@@ -32,7 +33,7 @@ public class AdminBoardDAOImpl  implements AdminBoardDAO {
 	public int modifynotice(NoticeVO noticeVO) {
 		return sqlSession.update("mapper.admin.board.modifynotice", noticeVO);
 	} 
-	
+		
 	// 공지사항 선택삭제
 	@Override
 	public void noticedelete(String notice_num) {
@@ -44,12 +45,10 @@ public class AdminBoardDAOImpl  implements AdminBoardDAO {
 	public List<NoticeVO> selectAllNoticesList(SearchCriteria scri) throws Exception {
 		return sqlSession.selectList("mapper.admin.board.selectAllNoticesList", scri);
 	}
-	
+		
 	// 공지사항 목록
 	@Override
 	public int adminopenNoticeList(SearchCriteria scri) throws Exception {
-	    return sqlSession.selectOne("mapper.admin.board.adminopenNoticeList");
+		return sqlSession.selectOne("mapper.admin.board.adminopenNoticeList");
 	}
-
-
 }
