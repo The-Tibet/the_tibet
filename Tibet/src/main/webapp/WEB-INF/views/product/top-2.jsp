@@ -43,8 +43,76 @@ section .sort {
 	justify-content: flex-end;
 }
 
+section .sort p {	
+	width: 1px;	
+	margin: 0 0 1% 0;	
+}
+
 .hr {
 	margin-top: -10px;
+}
+
+section .noProd {
+	color: black;
+}
+
+section .page_wrap {
+	display: flex;
+	justify-content: space-around;
+}
+
+.page_nation {
+	display: inline-block;
+	margin-bottom: 150px;
+}
+
+.page_nation .none {
+	display: none;
+}
+
+.page_nation a {
+	display: block;
+	margin: 0 3px;
+	float: left;
+	border: 1px solid #e6e6e6;
+	width: 28px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	background-color: #fff;
+	font-size: 13px;
+	color: #999999;
+	text-decoration: none;
+}
+
+.page_nation a.active {
+	background-color: #42454c;
+	color: #fff;
+	border: 1px solid #42454c;
+}
+
+.paging {
+	margin-top: 50px;
+	font-size: 0px;
+	text-align: center;
+	color: rgb(150, 150, 150);
+}
+
+.paging a {
+	display: inline-block;
+	margin-left: 5px;
+	padding: 5px 7px;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+.paging .num-on {
+	color: black;
+	font-weight: 700;
+}
+
+.SubMenu li:hover {
+	text-decoration: underline #999;
 }
 
 section .SelectMenu {
@@ -54,6 +122,60 @@ section .SelectMenu {
 
 .SubMenu li:hover {
 	text-decoration: underline #999;
+}
+
+.items {
+	width: 20%;
+	height: 410px;
+	/* border: solid 1px blue; */
+	margin: 50px 2.5%;
+	float: left;
+	justify-content: center;
+}
+
+.items img {
+	max-width: 100%;
+	height: 331px;
+	display: block;
+}
+
+.items li {
+	font-family: "돋움";
+	color: #666666;
+}
+
+.items .a {
+	font-weight: bold;
+	color: black;
+	margin-top: 20px;
+}
+
+.items .b {
+	font-weight: bold;
+	color: black;
+	margin-top: 5px;
+}
+
+.items .b span {
+	color: #a26f59;
+}
+
+.items .c {
+   font-weight: bold;
+   color: black;
+   margin-top: 5px;
+   text-decoration: line-through;
+   
+}
+
+.items .d {
+   color: #ff5100;
+   font-weight: bold;
+   margin-top: 5px;
+}
+
+.clear {
+	clear: both;
 }
 
 .UnSelectMenu-chk {
