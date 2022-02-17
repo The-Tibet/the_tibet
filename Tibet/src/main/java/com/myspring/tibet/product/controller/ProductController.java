@@ -32,4 +32,5 @@ public interface ProductController {
 	public ModelAndView acc4(String page, HttpServletResponse response) throws Exception;
 	public ModelAndView sale(String page, HttpServletResponse response) throws Exception;
 	public ModelAndView NEW(String page, HttpServletResponse response) throws Exception;
+	public ModelAndView search(String KeyWord, HttpServletResponse response) throws Exception;
 }

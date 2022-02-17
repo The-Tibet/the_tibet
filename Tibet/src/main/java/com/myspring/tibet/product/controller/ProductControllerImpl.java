@@ -33,11 +33,18 @@ public class ProductControllerImpl implements ProductController{
 	}
 	
 	@Override
+	@RequestMapping(value = "/searchForm.do") 
+	public ModelAndView search(@RequestParam(name="KeyWord") String KeyWord, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView("/search");
+		mav.addObject("list", productService.SEARCH(KeyWord));
+		return mav; 
+	}
+	
+	@Override
 	@RequestMapping(value = "/new.do")
 	public ModelAndView NEW(@RequestParam(name="p",defaultValue="1") String page, HttpServletResponse response) throws Exception {
-		int value = Integer.parseInt(page);
-		System.out.println("컨트롤러 : " + value);
 		ModelAndView mav = new ModelAndView("/new");
+	    int value = Integer.parseInt(page);
 		mav.addObject("list", productService.NEW(value));
 		return mav;
 	}

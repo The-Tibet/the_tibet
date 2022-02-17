@@ -35,15 +35,16 @@ request.setCharacterEncoding("UTF-8");
           <table class="table table-striped">
             <tr>
                 <td>제목</td>
-                <td><input type="text"  class="form-control" name="notice_title"></td>
+                <td><input type="text"  class="form-control" name="notice_title" value="${notice.notice_title}"></td>
             </tr>
 					<%
 					session.getAttribute("memberInfo");
 					%>
-				<input type="hidden" id="관리자" name="user_id" value="${memberInfo.user_id}">
+				<input type="hidden" id="관리자" name="user_id" value="${memberInfo.user_id}"/>
             <tr>
                 <td>글내용</td>
-                <td><textarea id="summernote" rows="10" cols="50" name="notice_content" class="form-control"></textarea></td>
+                <td><textarea id="summernote" rows="10" cols="50" name="notice_content" class="form-control" >
+                <c:out value="${notice.notice_content}" /></textarea></td>
             </tr>
 
             <tr>
@@ -58,15 +59,15 @@ request.setCharacterEncoding("UTF-8");
 					<div class="form-group form_file">
 						<div>
 							<label>이미지 첨부</label> 
-							<input class="form-control form_point_color01" type="file" name="notice_img1">
+							<input class="form-control form_point_color01" type="file" name="notice_img1" value="${notice.notice_img1}">
 						</div>
 						<div>
 							<label>이미지 첨부</label> 
-							<input class="form-control form_point_color01" type="file" name="notice_img2">
+							<input class="form-control form_point_color01" type="file" name="notice_img2" value="${notice.notice_img2}">
 						</div>
 						<div>
 							<label>이미지 첨부</label> 
-							<input class="form-control form_point_color01" type="file" name="notice_img3">
+							<input class="form-control form_point_color01" type="file" name="notice_img3" value="${notice.notice_img3}">
 						</div>
 						</div>
         </form>
@@ -92,7 +93,7 @@ request.setCharacterEncoding("UTF-8");
 			if (answer == true) {
 
 				document.getElementById('noticeMod').submit();
-				location = url;
+				//location = url;
 			}
 		}
 		function delete_check() {

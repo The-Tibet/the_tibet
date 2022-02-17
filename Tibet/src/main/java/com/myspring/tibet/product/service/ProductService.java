@@ -32,4 +32,5 @@ public interface ProductService {
 	public List<ProductVO> ACC3(int value) throws Exception;
 	public List<ProductVO> ACC4(int value) throws Exception;
 	public List<ProductVO> NEW(int value) throws Exception;
+	public List<ProductVO> SEARCH(String KeyWord) throws Exception;
 }

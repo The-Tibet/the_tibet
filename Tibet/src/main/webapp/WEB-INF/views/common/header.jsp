@@ -116,7 +116,7 @@ request.setCharacterEncoding("UTF-8");
                         <li><a href="${contextPath}/bag-1.do?p=1">숄더백</a></li>
                         <li><a href="${contextPath}/bag-2.do?p=1">백팩</a></li>
                         <li><a href="${contextPath}/bag-3.do?p=1">크로스백</a></li>
-                        <li><a href="${contextPath}/bag-4.do?p=1">메선저백</a></li>
+                        <li><a href="${contextPath}/bag-4.do?p=1">메신저백</a></li>
                     </ul>
                 </div>
                 <div class="submenu06" id="submenu10-1">
@@ -124,7 +124,7 @@ request.setCharacterEncoding("UTF-8");
                         <li><a href="${contextPath}/acc-1.do?p=1">모자</a></li>
                         <li><a href="${contextPath}/acc-2.do?p=1">반지&팔찌</a></li>
                         <li><a href="${contextPath}/acc-3.do?p=1">선글라스</a></li>
-                        <li><a href="${contextPath}/acc-4.do?p=1">밸트</a></li>
+                        <li><a href="${contextPath}/acc-4.do?p=1">벨트</a></li>
                     </ul>
                 </div>
                 <div class="submenu07" id="submenu10-1">
@@ -145,21 +145,46 @@ request.setCharacterEncoding("UTF-8");
 					<i class="fas fa-times"></i>
 				</button>
 			</div>
+			<form method="GET" name="search" action="${contextPath}/searchForm.do">
 			<div class="wraps">
 				<div class="search">
-					<input type="text" class="searchTerm"
-						placeholder="What are you looking for?">
-					<button type="submit" class="searchButton">
-						<i class="fas fa-search"></i>
-					</button>
+					<input type="text" list="productlist" name="KeyWord" id="KeyWord" class="KeyWord"
+							placeholder="What are you looking for?" style="width: 90%;">
+							<datalist id="productlist">
+								<option value="재킷">
+								<option value="점퍼">
+								<option value="코트">
+								<option value="티셔츠">
+								<option value="셔츠">
+								<option value="후드">
+								<option value="맨투맨">
+								<option value="니트">
+								<option value="가디건">
+								<option value="조끼">
+								<option value="팬츠">
+								<option value="쇼츠">
+								<option value="숄더백">
+								<option value="백팩">
+								<option value="크로스백">
+								<option value="메신저백">
+								<option value="모자">
+								<option value="반지">
+								<option value="팔찌">
+								<option value="선글라스">
+								<option value="벨트">
+							</datalist>
+						<button type="submit" class="searchButton">
+							<i class="fas fa-search"></i>
+						</button>
 				</div>
 			</div>
+			</form>
 			<div class="recommend-items">
 				<ul>
-					<li><a href="#" class="font-777"># 다가오는 겨울에 함께 하기 좋은 윈터 룩</a></li>
-					<li><a href="#" class="font-777"># 오늘의 신상 할인 5%~10%</a></li>
-					<li><a href="#" class="font-777"># 휘뚜루마뚜루 착용할 수 있는 데일리 니트</a></li>
-					<li><a href="#" class="font-777"># 바지 맛집! 인기팬츠 보러가기!</a></li>
+					<li><a href="${contextPath}/new.do?p=1" class="font-777"># 다가오는 겨울에 함께 하기 좋은 윈터 룩</a></li>
+					<li><a href="${contextPath}/sale.do?p=1" class="font-777"># 오늘의 신상 할인 5%~10%</a></li>
+					<li><a href="${contextPath}/top-4.do?p=1" class="font-777"># 휘뚜루마뚜루 착용할 수 있는 데일리 니트</a></li>
+					<li><a href="${contextPath}/pants.do?p=1" class="font-777"># 바지 맛집! 인기팬츠 보러가기!</a></li>
 				</ul>
 			</div>
 		</div>

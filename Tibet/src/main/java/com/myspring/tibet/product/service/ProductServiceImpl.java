@@ -30,6 +30,11 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
+	public List<ProductVO> SEARCH(String KeyWord) throws Exception {
+		return productDao.SEARCH(KeyWord);
+	}
+	
+	@Override
 	public List<ProductVO> NEW(int value) throws Exception {
 		System.out.println("Service : " +  value);	
 		return productDao.NEW(value);

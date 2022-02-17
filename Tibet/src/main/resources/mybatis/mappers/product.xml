@@ -96,6 +96,10 @@
 		select * from product <include refid="sort" /> Limit 8
 	</select>
 	
+	<select id="SEARCH" resultType="com.myspring.tibet.product.vo.ProductVO" parameterType="String">
+		select * from product where product_name like concat('%',#{KeyWord},'%') 
+	</select>
+	
 	<select id="productDetail" resultType="com.myspring.tibet.product.vo.ProductVO">
 		select 
 		product_num, product_name, product_price, product_sale,

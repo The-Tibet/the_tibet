@@ -112,6 +112,12 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/member/resultPW.jsp" />
 	</definition>
+	
+	<definition name="/search" extends="baseLayout">	
+		<put-attribute name="title" value="검색 결과" />	
+		<put-attribute name="body"	
+			value="/WEB-INF/views/product/search.jsp" />	
+	</definition>
 
 	<definition name="/new" extends="baseLayout">
 		<put-attribute name="title" value="NEW" />
@@ -147,12 +153,6 @@
 		<put-attribute name="title" value="티셔츠" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/product/top-1.jsp" />
-	</definition>
-
-	<definition name="/top-1-1" extends="baseLayout">
-		<put-attribute name="title" value="티셔츠" />
-		<put-attribute name="body"
-			value="/WEB-INF/views/product/productDetail.jsp" />
 	</definition>
 
 	<definition name="/top-2" extends="baseLayout">

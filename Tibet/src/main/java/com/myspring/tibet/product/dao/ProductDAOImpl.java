@@ -32,6 +32,11 @@ public class ProductDAOImpl implements ProductDAO{
 	}
 	
 	@Override
+	public List<ProductVO> SEARCH(String KeyWord) throws Exception{
+		return sqlSession.selectList(namespace + ".SEARCH", KeyWord);
+	}
+	
+	@Override
 	public List<ProductVO> NEW(int value) throws Exception {
 		System.out.println("dao : " +  value);		
 		return sqlSession.selectList(namespace + ".NEW",value);
